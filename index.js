@@ -19,10 +19,9 @@ const Routes     = require('./routes');
 const server     = Hapi.server({ port: process.env.PORT || 3000, });
 require('./app/models/db');
 
-## Check we are okay
+// Check we are okay
 check([Dotenv, Hapi, HapiCookie, Vision, Inert, Nunjucks, Routes, server])
 
-## Vision Templates rendering support for Hapi: https://github.com/hapijs/vision#nunjucks
 
 async function provision() {
   await server.register(Inert);
@@ -30,7 +29,7 @@ async function provision() {
   await server.register(HapiCookie);
 
   server.views({
-    engines: {
+    engines: { // Vision Templates rendering support for Hapi: https://github.com/hapijs/vision#nunjucks
       njk: {
                 compile: (src, options) => {
                     const template = Nunjucks.compile(src, options.environment);
@@ -43,6 +42,7 @@ async function provision() {
                     options.compileOptions.environment = Nunjucks.configure(options.path, { watch : false });
                     return next();
                 }
+           },
     },
     relativeTo: __dirname,
     path: './app/views',
@@ -63,7 +63,7 @@ async function provision() {
   server.auth.default({
     mode: 'required',
     strategy: 'standard'
-  });
+ });
 
   server.route(Routes);
   await server.start();
