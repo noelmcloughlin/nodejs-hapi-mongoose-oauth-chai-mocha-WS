@@ -1,0 +1,13 @@
+{% if errors %}
+  <div class="ui negative message transition">
+    <i class="close icon"></i>
+    <div class="header">
+      There was a problem...
+    </div>
+    <ul class="list">
+      {% for e in error %}
+        <li>{{ e.message }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}

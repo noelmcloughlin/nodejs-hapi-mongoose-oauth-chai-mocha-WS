@@ -1,0 +1,94 @@
+{% include "layouts/layout.njk" %}
+
+<div class="pusher">
+    <div class="ui inverted vertical masthead center aligned segment">
+        {%- include "partials/menu.njk" %}
+
+        <div class="ui two column grid basic middle aligned segment">
+          <div class="column">
+            <img class="ui image" src="/images/splash.png">
+          </div>
+          <div class="column">
+            <form class="ui stacked segment form" action="/settings" method="POST">
+              <h3 class="ui header">Settings</h3>
+              <div class="two fields">
+                <div class="field">
+                  <label>Name</label>
+                  <input placeholder="Name" type="text" name="name" value="{{ user.name }}">
+                  <div class="ui pointing label">Check your name</div>
+                </div>
+                <div class="field">
+                  <label>Email</label>
+                  <input placeholder="Email" type="text" name="email" value="{{ user.email }}">
+                  <div class="ui pointing label">Check your email address</div>
+                </div>
+              </div>
+              <div class="two fields">
+                <div class="field">
+                  <label>Password</label>
+                  <input type="password" name="password" value="{{ user.password }}">
+                  <div class="ui pointing label">Consider changing your password</div>
+                </div>
+                <div class="field">
+                  <label>Address</label>
+                  <input type="text" name="address" value="{{ user.address }}">
+                  <div class="ui pointing label">Change your address</div>
+                </div>
+              </div>
+              <button class="ui blue submit button">Update settings for {{ user.name }}</button>
+            </form>
+            <script>
+                $('.ui.dropdown')
+                    .dropdown();
+
+                $('.ui.form')
+                    .form({
+                        fields: {
+                            name: {
+                                identifier: 'name',
+                                rules: [
+                                    {
+                                        type: 'empty',
+                                        prompt: 'Please check your name'
+                                    }
+                                ]
+                            },
+                            address: {
+                                identifier: 'address',
+                                rules: [
+                                    {
+                                        type: 'empty',
+                                        prompt: 'Please check your address'
+                                    }
+                                ]
+                            },
+                            email: {
+                                identifier: 'email',
+                                rules: [
+                                    {
+                                        type: 'empty',
+                                        prompt: 'Please check your email'
+                                    }
+                                ]
+                            },
+                            password: {
+                                identifier: 'password',
+                                rules: [
+                                    {
+                                        type: 'empty',
+                                        prompt: 'Please enter your password'
+                                    },
+                                    {
+                                        type: 'minLength[6]',
+                                        prompt: 'Your password must be at least {ruleValue} characters'
+                                    }
+                                ]
+                            }
+                        }
+                    })
+                ;
+            </script>
+          </div>
+        </div>
+    </div>
+</div>

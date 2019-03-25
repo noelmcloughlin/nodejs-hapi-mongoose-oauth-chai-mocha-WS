@@ -1,0 +1,24 @@
+<section class="ui raised segment">
+  <div class="ui grid">
+    <aside class="six wide column">
+    </aside>
+    <article class="eight wide column">
+      <table class="ui celled table segment">
+        <thead>
+          <tr>
+            <th>Point of Interest</th>
+            <th>Region</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for d in pois %}
+            <tr>
+              <td> {{ d.name }} </td>
+              <td> {{ region.title }} </td>
+            </tr>
+          {%- endfor %}
+        </tbody>
+      </table>
+    </article>
+  </div>
+</section>

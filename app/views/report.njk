@@ -1,0 +1,14 @@
+{% include "layouts/layout.njk" %}
+  
+<div class="pusher">
+    <div class="ui inverted vertical masthead center aligned segment">
+
+        {%- include "layouts/welcomemenu.html" %}
+
+        <section class="ui left aligned doubling one column stackable grid container">
+            <div class="column">
+                {{ poilist }}
+            </div>
+        </section>
+    </div>
+</div>

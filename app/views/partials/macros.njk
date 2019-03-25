@@ -1,0 +1,196 @@
+{# See: https://css-tricks.com/killer-features-of-nunjucks/ #}
+
+{% macro assessmentrow(assessment, member, deletable, editable) %}
+    <tr>
+        <td> {{ assessment.date }} </td>
+        <td> {{ assessment.weight }}</td>
+        <td> {{ assessment.chest }} </td>
+        <td> {{ assessment.thigh }}</td>
+        <td> {{ assessment.upperarm }} </td>
+        <td> {{ assessment.waist }} </td>
+        <td> {{ assessment.hips }}  </td>
+        <td><a class="ui {{ 'red' if assessment.trend else 'teal' }} tag label"></a></td>
+        <td>
+        {% if editable %}
+
+            <form class="ui form" action="/editcomment/{{ assessment.id }}" method="POST">
+                <div class="ui field">
+                    <textarea rows="2" name="comment"> {{ assessment.comment }} </textarea>
+                </div>
+                <button class="ui tiny blue submit button"> Update </button>
+            </form>
+
+        {% else %}
+            {{ assessment.comment }}
+
+        {% endif %}
+        </td>
+
+        {% if deletable %}
+
+            <td>
+                <a href='/dashboard/{{ member.id }}/deleteassessment/{{ assessment.id }}' class="ui icon button">
+                    <i class='icon trash'></i>
+                </a>
+            </td>
+
+        {% endif %}
+    </tr>
+{% endmacro %}
+
+
+{% macro assessmenttable(assessments, member, deletable, editable) %}
+
+    <table class="ui celled table">
+        <thead>
+        <tr>
+            <th> Date </th>
+            <th> Weight </th>
+            <th> Chest </th>
+            <th> Thigh </th>
+            <th> Upper Arm </th>
+            <th> Waist </th>
+            <th> Hips </th>
+            <th> Trend </th>
+            <th> Comment </th>
+            {% if deletable %}
+                <th> Action </th>
+            {% endif %}
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for assessment in assessments %}
+            {{ assessmentrow(assessment, member, deletable, editable) }}
+        {% endfor %}
+
+        </tbody>
+    </table>
+{% endmacro %}
+
+{% macro goalrow(goal, member, deletable, editable) %}
+    <tr>
+        <td> {{ goal.date }} </td>
+        <td> {{ goal.target }}</td>
+        <td>
+            <a class="ui {{ 'red' if goal.trend else 'teal' }} tag label"></a>
+        </td>
+        <td> {{ goal.status }} </td>
+        <td>
+            {% if editable %}
+
+                <form class="ui form" action="/editcriteria/{{ goal.id }}" method="POST">
+                    <div class="ui field">
+                        <textarea rows="2" name="criteria"> {{ goal.criteria }} </textarea>
+                    </div>
+                    <button class="ui tiny blue submit button"> Update </button>
+                </form>
+        </td>
+        <td>
+            <div class="date">
+                <label>Due-date</label>
+                <input type="text" id="datepicker" name="date">
+                <div class="ui pointing label">Due Date)</div>
+            </div>
+
+            {% else %}
+
+                {{ goal.criteria }}
+        </td>
+        <td>
+                {{ goal.duedate }}
+
+            {% endif %}
+        </td>
+
+        {% if deletable %}
+            <td>
+                <a href='/dashboard/{{ member.id }}/deletegoal/{{ goal.id }}' class="ui icon button">
+                    <i class='icon trash'></i>
+                </a>
+            </td>
+        {% endif %}
+
+    </tr>
+{% endmacro %}
+
+{% macro goaltable(goals, member, deletable, editable) %}
+
+    <table class="ui celled table">
+        <thead>
+        <tr>
+            <th> Date </th>
+            <th> Target </th>
+            <th> Trend </th>
+            <th> Status </th>
+            <th> Criteria </th>
+            <th> Due Date </th>
+            {% if deletable %}
+                <th> Action </th>
+            {% endif %}
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for goal in goals %}
+            {{ goalrow(goal, member, deletable, editable) }}
+        {% endfor %}
+
+        </tbody>
+    </table>
+{% endmacro %}
+
+{# See: https://css-tricks.com/killer-features-of-nunjucks/ #}
+
+{% macro analytics(member, memberStats) %}
+    {% if member %}
+        <section class="ui segment">
+            <div class="ui five small statistics">
+                <div class="ui statistic">
+                    <div class="value">
+                        <i class="user icon"></i>
+                    </div>
+                    <div class="label">
+                        {{ member.name }}
+                    </div>
+                </div>
+                <div class="ui statistic">
+                    <div class="value">
+                        <i class="{{ 'green' if memberStats.isIdealBodyweight else 'red' }} dashboard icon"></i>
+                    </div>
+                    <div class="label">
+                        Ideal Weight Indicator
+                    </div>
+                </div>
+                <div class="ui statistic">
+                    <div class="value">
+                        <i class="heartbeat icon"></i> {{ memberStats.bmi }}
+                    </div>
+                    <div class="label">
+                        BMI
+                    </div>
+                </div>
+                <div class="ui statistic">
+                    <div class="value">
+                        <i class="doctor icon"></i>
+                    </div>
+                    <div class="label">
+                        {{ memberStats.bmiCategory }}
+                    </div>
+                </div>
+                <div class="ui statistic">
+                    <div class="value">
+              {% if memberStats.goaltrend %}
+                    <i class="green bullseye icon"></i>
+              {%- else %}
+                    <i class="red bullseye icon"></i>
+              {%- endif %}
+                    </div>
+                    <div class="label">
+                    Goals Indicator
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+{% endmacro %}
