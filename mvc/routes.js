@@ -6,6 +6,7 @@ const Pois = require('./controllers/pois');
 
 module.exports = [
   { method: 'GET', path: '/', config: Accounts.index },
+  { method: 'GET', path: '/privacy/ok', config: Accounts.index },
   { method: 'GET', path: '/privacy', config: About.privacy },
   { method: 'GET', path: '/signup', config: Accounts.showSignup },
   { method: 'GET', path: '/login', config: Accounts.showLogin },
