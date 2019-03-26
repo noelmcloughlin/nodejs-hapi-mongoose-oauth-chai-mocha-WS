@@ -1,19 +1,20 @@
 'use strict';
 
-const Dotenv       = require('dotenv')
+const Dotenv       = require('dotenv');
 const Result       = Dotenv.config();
 const Hapi         = require('hapi');
 const HapiCookie   = require('hapi-auth-cookie');
 const Vision       = require('vision');
 const Inert        = require('inert');
 const Nunjucks     = require('nunjucks');
-const NunjucksHapi = require('nunjucks-hapi')
+const NunjucksHapi = require('nunjucks-hapi');
+const Routes       = require('./mvc/routes');
+const server       = Hapi.server({ port: process.env.PORT || 3000, });
+let Path           = require('path');
 
-const Routes     = require('./mvc/routes');
-const server     = Hapi.server({ port: process.env.PORT || 3000, });
 require('./mvc/models/db');
 
-const Checklist = [Result, Hapi, HapiCookie, Vision, Inert, Nunjucks, NunjucksHapi, Routes, server]
+const Checklist = [Result, Hapi, HapiCookie, Vision, Inert, Nunjucks, NunjucksHapi, Routes, server, Path]
 for (const o of Checklist) {
     if (o.error) {
         console.log(o.error.message);
@@ -21,7 +22,7 @@ for (const o of Checklist) {
     }
 }
 
-Nunjucks.installJinjaCompat()
+Nunjucks.installJinjaCompat();
 Nunjucks.configure('views', {
     autoescape: true,
     cache: false,
@@ -37,12 +38,11 @@ async function provision() {
     engines: {
          njk: NunjucksHapi     // https://github.com/seldo/nunjucks-hapi
     },
-    relativeTo: __dirname,
-    path: './mvc/views',
-    layoutPath: './mvc/views/layouts',
-    partialsPath: './mvc/views/partials',
-    layout: false,                       // true renders (unwanted) raw html! Need false.
-    isCached: false
+    path: Path.join(__dirname, 'mvc/views'),
+    layoutPath: Path.join(__dirname, 'mvc/views/layouts'),
+    partialsPath: Path.join(__dirname, 'mvc/views/partials'),
+    isCached: false,
+    layout: false            // warning; true renders (unwanted) raw html! Need false.
   });
 
   server.auth.strategy('standard', 'cookie', {

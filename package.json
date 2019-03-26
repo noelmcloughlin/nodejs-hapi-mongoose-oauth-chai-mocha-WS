@@ -22,6 +22,7 @@
     "mongoose": "^5.4.19",
     "nunjucks": "^3.2.0",
     "nunjucks-hapi": "^2.1.0",
+    "path": "^0.12.7",
     "vision": "^5.4.4"
   },
   "devDependencies": {
