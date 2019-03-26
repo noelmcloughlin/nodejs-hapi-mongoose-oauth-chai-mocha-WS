@@ -9,7 +9,7 @@ const Inert        = require('inert');
 const Nunjucks     = require('nunjucks');
 const NunjucksHapi = require('nunjucks-hapi')
 
-const Routes     = require('./routes');
+const Routes     = require('./mvc/routes');
 const server     = Hapi.server({ port: process.env.PORT || 3000, });
 require('./models/db');
 
