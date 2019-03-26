@@ -5,8 +5,7 @@ const Mongoose = require('mongoose');
 const Schema = Mongoose.Schema;
 
 /* https://mongoosejs.com/docs/schematypes.html */
-const PoisSchema = new Schema(
-  {
+const PoisSchema = new Schema({
     name: String,
     nameHtml: String,
     safeName: String,
@@ -33,7 +32,10 @@ const PoisSchema = new Schema(
     },
     cursor: Number,
     description: String,
-    costalZone: String
+    costalZone: {
+        type: Schema.Types.ObjectId,
+        ref: 'Regions',
+    },
   });
 
 PoisSchema.statics.findByName = function(name) {
