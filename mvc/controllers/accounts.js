@@ -17,7 +17,7 @@ const Accounts = {
       return h.view('signup', { title: 'Sign up for Points of Interest' });
     }
   },
-  signup: {
+  submitSignup: {
     auth: false,
     validate: {
       payload: {

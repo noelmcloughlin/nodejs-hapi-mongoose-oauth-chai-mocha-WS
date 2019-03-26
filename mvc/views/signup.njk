@@ -24,7 +24,7 @@
                     <p>Fill out the form below to sign-up for a new account</p>
                 </div>
 
-                <form class="ui form segment" action="/signup" method="POST">
+                <form class="ui form segment" action="/signup/submit" method="POST">
                     <h3 class="ui header">Register</h3>
                     <div class="three fields">
                         <div class="field">
@@ -64,62 +64,6 @@
                 <script>
                     $('.ui.dropdown')
                         .dropdown();
-
-                    $('.ui.form')
-                        .form({
-                            fields: {
-                                name: {
-                                    identifier: 'name',
-                                    rules: [
-                                        {
-                                            type: 'empty',
-                                            prompt: 'Enter your name'
-                                        }
-                                    ]
-                                },
-                                email: {
-                                    identifier: 'email',
-                                    rules: [
-                                        {
-                                            type: 'empty',
-                                            prompt: 'Enter your email'
-                                        }
-                                    ]
-                                },
-                                password: {
-                                    identifier: 'password',
-                                    rules: [
-                                        {
-                                            type: 'empty',
-                                            prompt: 'Please enter a password'
-                                        },
-                                        {
-                                            type: 'minLength[6]',
-                                            prompt: 'Your password must be at least {ruleValue} characters'
-                                        }
-                                    ]
-                                },
-                                terms: {
-                                    identifier: 'terms',
-                                    rules: [
-                                        {
-                                            type: 'checked',
-                                            prompt: 'You must agree to the terms and conditions'
-                                        }
-                                    ]
-                                },
-                                address: {
-                                    identifier: 'address',
-                                    rules: [
-                                        {
-                                            type: 'empty',
-                                            prompt: 'Enter your home address'
-                                        }
-                                    ]
-                                },
-                            }
-                        })
-                    ;
                 </script>
 
                 <div class="ui bottom attached warning message">
