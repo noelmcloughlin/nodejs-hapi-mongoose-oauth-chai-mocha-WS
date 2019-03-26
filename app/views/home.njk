@@ -1,8 +1,8 @@
-{% include "layouts/layout.njk" %}
-  
+{# include "layouts/main.html" #}
+
 <div class="pusher">
   <div class="ui inverted vertical masthead center aligned segment">
-      {%- include "partials/welcomemenu.html" %}
+      {%- include "partials/welcomemenu.html"|safe %}
 
       <section class="ui stacked segment">
           <div class="ui grid">
