@@ -1,7 +1,8 @@
 'use strict';
 
-const Accounts = require('./mvc/controllers/accounts');
-const Pois = require('./mvc/controllers/pois');
+const Accounts = require('./controllers/accounts');
+const About = require('./controllers/about');
+const Pois = require('./controllers/pois');
 
 module.exports = [
   { method: 'GET', path: '/', config: Accounts.index },

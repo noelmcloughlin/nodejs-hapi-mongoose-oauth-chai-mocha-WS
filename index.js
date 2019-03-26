@@ -11,7 +11,7 @@ const NunjucksHapi = require('nunjucks-hapi')
 
 const Routes     = require('./mvc/routes');
 const server     = Hapi.server({ port: process.env.PORT || 3000, });
-require('./models/db');
+require('./mvc/models/db');
 
 const Checklist = [Result, Hapi, HapiCookie, Vision, Inert, Nunjucks, NunjucksHapi, Routes, server]
 for (const o of Checklist) {
@@ -33,12 +33,9 @@ async function provision() {
   await server.register(Vision);
   await server.register(HapiCookie);
 
-  // Different ways to use hapi and nunjucks ..
-  // Vision Templates rendering support for Hapi: https://github.com/hapijs/vision#nunjucks
-  // https://github.com/seldo/nunjucks-hapi
   server.views({
     engines: {
-         njk: NunjucksHapi
+         njk: NunjucksHapi     // https://github.com/seldo/nunjucks-hapi
     },
     relativeTo: __dirname,
     path: './mvc/views',
