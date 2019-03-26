@@ -1,18 +1,19 @@
 'use strict';
 
-const Dotenv     = require('dotenv')
-const Result     = Dotenv.config();
-const Hapi       = require('hapi');
-const HapiCookie = require('hapi-auth-cookie');
-const Vision     = require('vision');
-const Inert      = require('inert');
-const Nunjucks   = require('nunjucks');
+const Dotenv       = require('dotenv')
+const Result       = Dotenv.config();
+const Hapi         = require('hapi');
+const HapiCookie   = require('hapi-auth-cookie');
+const Vision       = require('vision');
+const Inert        = require('inert');
+const Nunjucks     = require('nunjucks');
+const NunjucksHapi = require('nunjucks-hapi')
 
 const Routes     = require('./routes');
 const server     = Hapi.server({ port: process.env.PORT || 3000, });
-require('./app/models/db');
+require('./models/db');
 
-const Checklist = [Result, Hapi, HapiCookie, Vision, Inert, Nunjucks, Routes, server]
+const Checklist = [Result, Hapi, HapiCookie, Vision, Inert, Nunjucks, NunjucksHapi, Routes, server]
 for (const o of Checklist) {
     if (o.error) {
         console.log(o.error.message);
@@ -20,33 +21,30 @@ for (const o of Checklist) {
     }
 }
 
+Nunjucks.installJinjaCompat()
+Nunjucks.configure('views', {
+    autoescape: true,
+    cache: false,
+    web: { async: true }
+});
 
 async function provision() {
   await server.register(Inert);
   await server.register(Vision);
   await server.register(HapiCookie);
 
+  // Different ways to use hapi and nunjucks ..
+  // Vision Templates rendering support for Hapi: https://github.com/hapijs/vision#nunjucks
+  // https://github.com/seldo/nunjucks-hapi
   server.views({
-    engines: { // Vision Templates rendering support for Hapi: https://github.com/hapijs/vision#nunjucks
-      njk: {
-                compile: (src, options) => {
-                    const template = Nunjucks.compile(src, options.environment);
-                    return (context) => {
-                        return template.render(context);
-                    };
-                },
-
-                prepare: (options, next) => {
-                    options.compileOptions.environment = Nunjucks.configure(options.path, { watch : false });
-                    return next();
-                }
-           },
+    engines: {
+         njk: NunjucksHapi
     },
     relativeTo: __dirname,
-    path: './app/views',
-    layoutPath: './app/views/layouts',
-    partialsPath: './app/views/partials',
-    layout: true,
+    path: './mvc/views',
+    layoutPath: './mvc/views/layouts',
+    partialsPath: './mvc/views/partials',
+    layout: false,                       // true renders (unwanted) raw html! Need false.
     isCached: false
   });
 

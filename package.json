@@ -21,6 +21,7 @@
     "mais-mongoose-seeder": "^1.0.7",
     "mongoose": "^5.4.19",
     "nunjucks": "^3.2.0",
+    "nunjucks-hapi": "^2.1.0",
     "vision": "^5.4.4"
   },
   "devDependencies": {

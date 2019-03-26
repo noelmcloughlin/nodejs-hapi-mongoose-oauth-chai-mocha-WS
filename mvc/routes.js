@@ -1,10 +1,11 @@
 'use strict';
 
-const Accounts = require('./app/controllers/accounts');
-const Pois = require('./app/controllers/pois');
+const Accounts = require('./mvc/controllers/accounts');
+const Pois = require('./mvc/controllers/pois');
 
 module.exports = [
   { method: 'GET', path: '/', config: Accounts.index },
+  { method: 'GET', path: '/privacy', config: About.privacy },
   { method: 'GET', path: '/signup', config: Accounts.showSignup },
   { method: 'GET', path: '/login', config: Accounts.showLogin },
   { method: 'GET', path: '/logout', config: Accounts.logout },
