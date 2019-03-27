@@ -1,9 +1,9 @@
-{# include "layouts/main.html" #}
+{% include "layouts/main.html" %}
 
-<div class="pusher">
+<div class="ui pusher">
   <div class="ui inverted vertical masthead center aligned segment">
 
-      {%- include "partials/welcomemenu.html" %}
+      {% include "partials/welcomemenu.html" %}
 
       <section class="ui stacked segment">
           <div class="ui grid">
@@ -11,15 +11,18 @@
                   <img class="ui image" src="/images/Beacha_sculpture_by_David_Walsh.jpg">
               </aside>
               <article class="ten wide column">
-                  <header class="ui header"> Oileain - Points Of Interest </header>
-                  <p>Exploring David Walsh's Oileain : Islands of Ireland.</p>
-                  <br><br><br>
 
                 {%- if pois %}
                     {%- include "partials/addpoi.njk" %}
 
                 {%- elif regions %}
                     {%- include "partials/addregion.njk" %}
+
+                {%- else %}
+                  <header class="ui header"> Oileain - Points Of Interest </header>
+                  <p>Exploring David Walsh's Oileain : Islands of Ireland.</p>
+                  <br><br><br>
+
                 {%- endif %}
 
               </article>
