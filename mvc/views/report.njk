@@ -1,4 +1,6 @@
 {% include "layouts/main.html" %}
+
+{% from "partials/macros.njk" import regiontable, poitable with context %}
   
 <div class="pusher">
     <div class="ui inverted vertical masthead center aligned segment">
@@ -8,9 +10,13 @@
         <section class="ui left aligned doubling one column stackable grid container">
             <div class="column">
                 {%- if pois is defined and pois %}
-                    {{ pois }}
+
+                    {%- include "partials/poi.njk" %}
+
                 {%- elif regions is defined and regions %}
-                    {{ regions }}
+
+                    {%- include "partials/region.njk" %}
+
                 {%- endif %}
             </div>
         </section>
