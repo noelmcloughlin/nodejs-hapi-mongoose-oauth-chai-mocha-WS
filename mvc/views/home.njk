@@ -3,7 +3,11 @@
 <div class="ui pusher">
   <div class="ui inverted vertical masthead center aligned segment">
 
-      {% include "partials/welcomemenu.html" %}
+    {%- if pois or regions %}
+        {% include "partials/mainmenu.njk" %}
+    {%- else %}
+        {% include "partials/welcomemenu.html" %}
+    {%- endif %}
 
       <section class="ui stacked segment">
           <div class="ui grid">

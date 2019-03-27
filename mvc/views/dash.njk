@@ -1,9 +1,13 @@
 {% include "layouts/main.html" %}
 
-<div class="ui container"> 
+<div class="ui pusher"> 
     <div class="ui inverted vertical masthead center aligned segment">
                     
-        {% include "partials/mainmenu.njk" %}
+        {%- if pois or regions %}
+            {% include "partials/mainmenu.njk" %}
+        {%- else %}
+            {% include "partials/welcomemenu.html" %}
+        {%- endif %}
                         
         <section class="ui segment">
             <div class="column">
