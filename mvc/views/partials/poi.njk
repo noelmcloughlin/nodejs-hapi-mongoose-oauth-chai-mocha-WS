@@ -3,8 +3,8 @@
     <div class="ui form six wide column">
       <div class="ui stacked segment">
 
-        {% if poiList %}
-            {{ poitable(poiList, false, false) }}   {# nunjunks macro #}
+        {% if pois %}
+            {{ poitable(pois, false, false) }}   {# nunjunks macro #}
         {%  else %}
             {{  'No pois found.' }}
         {% endif %}

@@ -12,7 +12,15 @@
               <article class="ten wide column">
                   <header class="ui header"> Oileain - Points Of Interest </header>
                   <p>Exploring David Walsh's Oileain : Islands of Ireland.</p>
-                  {{ error }}
+                  <br><br><br>
+                {%- if pois is defined and pois %}
+                    {%- include "partials/addpoi.njk" %}
+
+                {%- elif regions is defined and regions %}
+                    {%- include "partials/addregion.njk" %}
+
+                {%- endif %}
+
               </article>
           </div>
       </section>

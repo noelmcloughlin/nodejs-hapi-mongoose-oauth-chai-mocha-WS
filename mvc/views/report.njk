@@ -9,12 +9,11 @@
 
         <section class="ui left aligned doubling one column stackable grid container">
             <div class="column">
-                {%- if pois is defined and pois %}
 
+                {%- if pois is defined and pois %}
                     {%- include "partials/poi.njk" %}
 
                 {%- elif regions is defined and regions %}
-
                     {%- include "partials/region.njk" %}
 
                 {%- endif %}

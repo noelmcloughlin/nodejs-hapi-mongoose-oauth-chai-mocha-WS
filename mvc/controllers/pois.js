@@ -2,13 +2,12 @@
 
 const User   = require('../models/user');
 const Poi    = require('../models/poi');
-const Region = require('../models/region');
 
 const Pois = {
   home: {
     handler: async function(request, h) {
-      const regions = await Region.find();
-      return h.view('home', { title: 'Points of Interest', regions: regions });
+      const pois = await Poi.find();
+      return h.view('home', { title: 'Points of Interest', pois: pois });
     }
   },
   report: {

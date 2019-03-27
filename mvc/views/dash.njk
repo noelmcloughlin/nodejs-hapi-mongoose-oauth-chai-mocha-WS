@@ -8,6 +8,8 @@
         <section class="ui segment">
             <div class="column">
                     <div class="ui relaxed divided list">
+
+                {%- if regions is defined and regions %}
                                     
                         {%- for region in regions %}
                             <div class="item">
@@ -19,7 +21,7 @@
                                             <i class="ui large red icon trash"></i>
                                         </a>
                                     </div>
-                                     <div class="description"> {{ regionList|length }} regions </div>
+                                     <div class="description"> {{ regions|length }} regions </div>
                                 </div>
                             </div>
                         {%- endfor %}

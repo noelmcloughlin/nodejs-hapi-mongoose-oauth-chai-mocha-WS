@@ -3,8 +3,8 @@
     <div class="ui form six wide column">
       <div class="ui stacked segment">
 
-        {% if regionList %}
-            {{ regiontable(regionList, false, false) }}   {# nunjunks macro #}
+        {% if regions %}
+            {{ regiontable(regions, false, false) }}   {# nunjunks macro #}
         {%  else %}
             {{  'No regions found.' }}
         {% endif %}
