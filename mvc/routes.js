@@ -17,18 +17,12 @@ module.exports = [
   { method: 'POST', path: '/settings', config: Accounts.updateSettings },
 
   //Regions
-  { method: 'POST', path: '/dashboard/addregion', config: Dashboard.addregion },
-  { method: 'GET', path: '/dashboard/:regionid/delregion/:regionid', config: Dashboard.delregion },
-  { method: 'GET', path: '/dashboard/delregion/:regionid', config: Dashboard.delregion },
-  { method: 'GET', path: '/region/:regionid', config: Dashboard.region },
-  { method: 'POST', path: '/editdesc/:regionid', config: Dashboard.editdesc },
+  { method: 'POST', path: '/region/add', config: Region.add },
+  { method: 'GET', path: '/region/delete/:regionid', config: Region.delete },
 
   //Points of Interest
-  { method: 'POST', path: '/dashboard/addpoi', config: Dashboard.addpoi },
-  { method: 'GET', path: '/dashboard/:poiid/delpoi/:poiid', config: Dashboard.delpoi },
-  { method: 'GET', path: '/dashboard/delpoi/:poiid', config: Dashboard.delpoi },
-  { method: 'GET', path: '/poi/:poiid', config: Dashboard.poi },
-  { method: 'POST', path: '/editdesc/:poiid', config: Dashboard.editdesc },
+  { method: 'POST', path: '/region/poi/add', config: Pois.add },
+  { method: 'GET', path: '/region/:poi/delete', config: Pois.delete },
 
   { method: 'GET', path: '/home', config: Pois.home },
   { method: 'GET', path: '/report', config: Pois.report },

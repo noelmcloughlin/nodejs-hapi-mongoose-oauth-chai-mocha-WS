@@ -1,18 +1,18 @@
-<section class="ui raised segment">
-  <div class="ui grid ">
-    <div class="ui form six wide column">
-      <div class="ui stacked segment">
-
-        {% if pois %}
-            {{ poitable(pois, false, false) }}   {# nunjunks macro #}
-        {%  else %}
-            {{  'No pois found.' }}
-        {% endif %}
-
-      </div>
-    </div>
-    <aside class="six wide column">
-      <img src="images/Beacha_sculpture_by_David_Walsh.jpg" class="ui medium image">
-    </aside>
-  </div>
-</section>
+        <section class="ui raised segment">
+          <div class="ui grid ">
+            <div class="ui form six wide column">
+              <div class="ui stacked segment">
+        
+                {% if pois %}
+                    {{ poitable(pois, false, false) }}   {# nunjunks macro #}
+                {%  else %}
+                    {{  'No pois found.' }}
+                {% endif %}
+        
+              </div>
+            </div>
+            <aside class="six wide column">
+              <img src="images/Beacha_sculpture_by_David_Walsh.jpg" class="ui medium image">
+            </aside>
+          </div>
+        </section>
