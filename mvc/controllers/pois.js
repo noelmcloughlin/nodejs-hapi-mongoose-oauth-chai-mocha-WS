@@ -38,7 +38,7 @@ const Pois = {
           description: data.description
         });
         await newPois.save();
-        return h.redirect('/report');
+        return h.redirect('/poi/report');
       } catch (err) {
         return h.view('main', { errors: [{ message: err.message }] });
       }

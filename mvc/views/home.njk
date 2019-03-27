@@ -2,6 +2,7 @@
 
 <div class="pusher">
   <div class="ui inverted vertical masthead center aligned segment">
+
       {%- include "partials/welcomemenu.html" %}
 
       <section class="ui stacked segment">
@@ -14,12 +15,11 @@
                   <p>Exploring David Walsh's Oileain : Islands of Ireland.</p>
                   <br><br><br>
 
-                {%- if pois is defined and pois %}
+                {%- if pois %}
                     {%- include "partials/addpoi.njk" %}
 
-                {%- elif regions is defined and regions %}
+                {%- elif regions %}
                     {%- include "partials/addregion.njk" %}
-
                 {%- endif %}
 
               </article>

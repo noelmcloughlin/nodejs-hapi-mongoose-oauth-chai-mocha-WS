@@ -18,16 +18,17 @@ module.exports = [
   { method: 'POST', path: '/settings', config: Accounts.updateSettings },
 
   //Regions
+  { method: 'GET', path: '/region/home', config: Regions.home },
+  { method: 'GET', path: '/region/report', config: Regions.report },
   { method: 'POST', path: '/region/add', config: Regions.add },
-  { method: 'GET', path: '/region/delete/:regionid', config: Regions.delete },
+//{ method: 'GET', path: '/region/delete/:regionid', config: Regions.delete },
 
   //Points of Interest
+  { method: 'GET', path: '/poi/home', config: Pois.home },
+  { method: 'GET', path: '/poi/report', config: Pois.report },
   { method: 'POST', path: '/region/poi/add', config: Pois.add },
-  { method: 'GET', path: '/region/:poi/delete', config: Pois.delete },
+//{ method: 'GET', path: '/region/:poi/delete', config: Pois.delete },
 
-  { method: 'GET', path: '/home', config: Pois.home },
-  { method: 'GET', path: '/report', config: Pois.report },
-  { method: 'POST', path: '/create', config: Pois.create },
   {
     method: 'GET',
     path: '/{param*}',

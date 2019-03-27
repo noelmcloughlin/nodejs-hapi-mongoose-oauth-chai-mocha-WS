@@ -7,7 +7,7 @@
                         
         <section class="ui segment">
             <div class="column">
-                    <div class="ui relaxed divided list">
+                <div class="ui relaxed divided list">
 
                 {%- if regions is defined and regions %}
                                     
@@ -25,13 +25,11 @@
                                 </div>
                             </div>
                         {%- endfor %}
-                    </div>
-
                 {% else %}
                     {{  'No regions found.' }}
-    
                 {% endif %}
 
+                </div>
             </div>
         </section> 
     </div>

@@ -36,7 +36,7 @@ const Regions = {
           identifier: '**The '.concat(data.title).concat('**')
         });
         await newRegion.save();
-        return h.redirect('/report');
+        return h.redirect('/region/report');
       } catch (err) {
         return h.view('main', { errors: [{ message: err.message }] });
       }
