@@ -3,7 +3,7 @@
 const User   = require('../models/user');
 const Region = require('../models/region');
 
-const Region = {
+const Regions = {
   home: {
     handler: async function(request, h) {
       const regions = await Region.find();
@@ -15,7 +15,7 @@ const Region = {
       try {
         const region = await Region.find().populate('title');
         return h.view('report', {
-          title: 'Regions of Interest',
+          title: 'Region of Interest',
           region: region
         });
       } catch (err) {
@@ -23,14 +23,14 @@ const Region = {
       }
     }
   },
-  create: {
+  add: {
     handler: async function(request, h) {
       try {
         const id = request.auth.credentials.id;
         const user = await User.findById(id);
         const data = request.payload;
 
-        const newRegion = new Region({
+        const newRegion = new Reg({
           title: data.title,
           variable: data.title.toLowerCase().trim(),
           identifier: '**The '.concat(data.title).concat('**')
@@ -44,4 +44,4 @@ const Region = {
   }
 };
 
-module.exports = Region;
+module.exports = Regions;

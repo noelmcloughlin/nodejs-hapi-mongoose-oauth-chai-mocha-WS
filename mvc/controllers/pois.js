@@ -23,7 +23,7 @@ const Pois = {
       }
     }
   },
-  create: {
+  add: {
     handler: async function(request, h) {
       try {
         const id = request.auth.credentials.id;
@@ -31,7 +31,7 @@ const Pois = {
         const data = request.payload;
 
         const newPois = new Pois({
-          name: "**".concat(data.name).concat("**"),,
+          name: "**".concat(data.name).concat("**"),
           nameHtml: "&lt;p&gt;&lt;strong&gt;".concat(data.name).concat("&lt;/strong&gt;&lt;/p&gt;\n"),
           safeName: data.name.replace(' ', '-'),
           cursor: 0,

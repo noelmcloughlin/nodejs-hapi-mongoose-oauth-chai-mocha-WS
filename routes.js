@@ -1,8 +1,9 @@
 'use strict';
 
-const Accounts = require('./controllers/accounts');
-const About = require('./controllers/about');
-const Pois = require('./controllers/pois');
+const Accounts = require('./mvc/controllers/accounts');
+const About   = require('./mvc/controllers/about');
+const Regions = require('./mvc/controllers/regions');
+const Pois    = require('./mvc/controllers/pois');
 
 module.exports = [
   { method: 'GET', path: '/', config: Accounts.index },
@@ -17,8 +18,8 @@ module.exports = [
   { method: 'POST', path: '/settings', config: Accounts.updateSettings },
 
   //Regions
-  { method: 'POST', path: '/region/add', config: Region.add },
-  { method: 'GET', path: '/region/delete/:regionid', config: Region.delete },
+  { method: 'POST', path: '/region/add', config: Regions.add },
+  { method: 'GET', path: '/region/delete/:regionid', config: Regions.delete },
 
   //Points of Interest
   { method: 'POST', path: '/region/poi/add', config: Pois.add },

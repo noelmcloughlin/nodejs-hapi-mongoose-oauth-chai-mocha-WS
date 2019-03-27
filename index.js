@@ -8,7 +8,7 @@ const Vision       = require('vision');
 const Inert        = require('inert');
 const Nunjucks     = require('nunjucks');
 const NunjucksHapi = require('nunjucks-hapi');
-const Routes       = require('./mvc/routes');
+const Routes       = require('./routes');
 const server       = Hapi.server({ port: process.env.PORT || 3000, });
 let Path           = require('path');
 
