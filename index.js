@@ -38,9 +38,10 @@ async function provision() {
     engines: {
          njk: NunjucksHapi     // https://github.com/seldo/nunjucks-hapi
     },
-    path: Path.join(__dirname, 'mvc/views'),
-    layoutPath: Path.join(__dirname, 'mvc/views/layouts'),
-    partialsPath: Path.join(__dirname, 'mvc/views/partials'),
+    relativeTo: __dirname,
+    path: './mvc/views',
+    layoutPath: './mvc/views/layouts',
+    partialsPath: './mvc/views/partials',
     isCached: false,
     layout: false            // warning; true renders (unwanted) raw html! Need false.
   });
