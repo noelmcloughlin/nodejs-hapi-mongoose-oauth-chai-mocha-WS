@@ -7,7 +7,11 @@
 
         <section class="ui left aligned doubling one column stackable grid container">
             <div class="column">
-                {{ poilist }}
+                {%- if pois is defined and pois %}
+                    {{ pois }}
+                {%- elif regions is defined and regions %}
+                    {{ regions }}
+                {%- endif %}
             </div>
         </section>
     </div>

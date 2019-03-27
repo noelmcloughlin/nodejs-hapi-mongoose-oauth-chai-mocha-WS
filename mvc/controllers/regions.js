@@ -1,10 +1,9 @@
 'use strict';
 
 const User   = require('../models/user');
-const Poi    = require('../models/poi');
 const Region = require('../models/region');
 
-const Pois = {
+const Region = {
   home: {
     handler: async function(request, h) {
       const regions = await Region.find();
@@ -14,10 +13,10 @@ const Pois = {
   report: {
     handler: async function(request, h) {
       try {
-        const pois = await Pois.find().populate('name').populate('category').populate('description');
+        const region = await Region.find().populate('title');
         return h.view('report', {
-          title: 'Points of Interest',
-          pois: pois
+          title: 'Regions of Interest',
+          region: region
         });
       } catch (err) {
         return h.view('main', { errors: [{ message: err.message }] });
@@ -31,14 +30,12 @@ const Pois = {
         const user = await User.findById(id);
         const data = request.payload;
 
-        const newPois = new Pois({
-          name: "**".concat(data.name).concat("**"),,
-          nameHtml: "&lt;p&gt;&lt;strong&gt;".concat(data.name).concat("&lt;/strong&gt;&lt;/p&gt;\n"),
-          safeName: data.name.replace(' ', '-'),
-          cursor: 0,
-          description: data.description
+        const newRegion = new Region({
+          title: data.title,
+          variable: data.title.toLowerCase().trim(),
+          identifier: '**The '.concat(data.title).concat('**')
         });
-        await newPois.save();
+        await newRegion.save();
         return h.redirect('/report');
       } catch (err) {
         return h.view('main', { errors: [{ message: err.message }] });
@@ -47,4 +44,4 @@ const Pois = {
   }
 };
 
-module.exports = Pois;
+module.exports = Region;
