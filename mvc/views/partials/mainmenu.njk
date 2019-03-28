@@ -3,7 +3,11 @@
                 <a class="toc item">
                   <i class="sidebar icon"></i>
                 </a>
+            {%- if user or pois or regions %}
+                <header class="header item"><a href="/home"> Points of Interest</a></header>
+            {%- else %}
                 <header class="header item"><a href="/"> Points of Interest</a></header>
+            {%- endif %}
                 <div class="right menu">
                     <a id="home"   class= "item" href="/home"> Regions</a>
                     <a id="settings" class= "item" href="/settings"> Settings</a>

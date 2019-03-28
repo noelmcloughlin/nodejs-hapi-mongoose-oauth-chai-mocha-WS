@@ -1,8 +1,7 @@
    <section class="ui raised segment">
        <div class="ui grid ">
-           <div class="ui form six wide column">
-               <div class="ui stacked segment">
-        
+             <div class="ui stacked segment">
+                <h1>Points of Interest in the {{ region.title }} region</h1> 
                 {% if pois %}
                 <table class="ui celled table">
                     <thead>
@@ -23,7 +22,7 @@
                             <td>{{ poi.costalZone.title }}</td>
                             <td>
                                     {% if editable %}
-                                <form class="ui form" action="/report/{{ pois.costalZone }}/poi/{{ pois._id }}/edit/desc" method="POST">
+                                <form class="ui form" action="/report/{{ region._id }}/poi/{{ pois._id }}/edit/desc" method="POST">
                                     <div class="ui field">
                                         <textarea rows="2" name="comment"> {{ pois.description }} </textarea>
                                     </div>
@@ -33,7 +32,7 @@
                             </td>
                                     {% if deletable %}
                             <td>
-                                <a href='/report/{{ pois.costalZone }}/poi/{{ pois._id }}/delete' class="ui icon button">
+                                <a href='/report/{{ region._id }}/poi/{{ pois._id }}/delete' class="ui icon button">
                                     <i class='icon trash'></i>
                                 </a>
                             </td>
@@ -44,5 +43,6 @@
                     </tbody>
                 </table>
                 {% endif %}
+             </div>
        </div>
    </section>

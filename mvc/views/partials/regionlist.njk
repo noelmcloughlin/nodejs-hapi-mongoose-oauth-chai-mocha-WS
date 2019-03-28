@@ -1,7 +1,6 @@
    <section class="ui raised segment">
        <div class="ui grid ">
-           <div class="ui form six wide column">
-               <div class="ui stacked segment">
+             <div class="ui stacked segment">
                    <h3> Select a Region </h3>
         
                     {% if regions %}
@@ -19,7 +18,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <form class="ui form segment" action="/report" method="POST">
+                        <form class="ui form segment" method="POST">
                         {% for region in regions %}
                           <tr>
                                 <td>{{ region.title }}</td>
@@ -27,11 +26,9 @@
                                 <td>{{ region.identifier }}</td>
                                 <td>{{ region.latitude }}</td>
                                 <td>{{ region.longitude }}</td>
-                                <td><div class="ui radio checkbox">
-                                       <input type="radio" name="region_id" value="{{ region._id }}">
-                                       <div class="ui large buttons">
-                                           <button class="ui blue submit button">Submit</button>
-                                       </div>
+                                <td><form action="/report/{{ region._id }}">
+                                    <div class="ui large button">
+                                         <button class="ui blue submit button">View Points of Interest</button>
                                     </div>
                                 </td>
                                         {% if deletable %}
@@ -46,5 +43,6 @@
                     </tbody>
                 </table>
                 {% endif %}
+             </div>
        </div>
    </section>

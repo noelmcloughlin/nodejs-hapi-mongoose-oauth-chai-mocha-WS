@@ -18,7 +18,6 @@ module.exports = [
   { method: 'POST', path: '/settings', config: Accounts.updateSettings },
 
   //Points of Interest
-  { method: 'GET',  path: '/report', config: Pois.report },
   { method: 'GET',  path: '/report/:region_id', config: Pois.report },
   { method: 'POST', path: '/report/:region_id/poi/add', config: Pois.add },
   { method: 'GET',  path: '/report/:region_id/poi/:pois_id/delete', config: Pois.delete },

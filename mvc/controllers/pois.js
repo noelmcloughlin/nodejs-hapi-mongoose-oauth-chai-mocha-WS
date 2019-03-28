@@ -15,10 +15,7 @@ const Pois = {
     handler: async function(request, h) {
       try {
         const pois = await Pois.find().populate('_id').populate('name').populate('description').populate('costalZone');
-        let region_id = pois[0].costalZone
-        if (typeof request.params != "undefined") {
-            region_id = request.params.region_id;
-        }
+        region_id = request.params.region_id;
         const region = await Region.findById( region_id );
         return h.view('report', { title: 'Points of Interest', pois: pois, region: region });
       } catch (err) {
