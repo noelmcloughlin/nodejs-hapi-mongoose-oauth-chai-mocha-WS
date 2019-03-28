@@ -26,6 +26,7 @@ const Pois = {
   editDesc: {
     handler: async function(request, h) {
       try {
+        region_id = request.params.region_id;
         const pois_id = request.params.pois_id;
         const pois    = await Pois.findById( pois_id );
         const data    = request.payload;
