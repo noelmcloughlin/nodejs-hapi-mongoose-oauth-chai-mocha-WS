@@ -38,12 +38,16 @@ const PoisSchema = new Schema({
     },
   });
 
-PoisSchema.statics.findByName = function(name) {
-  return this.findOne({ name : name});
+PoisSchema.statics.findByNameAndRegionId = function(name, region) {
+  return this.find({ name : name, costalZone: region});
 };
 
-PoisSchema.statics.findByRegion = function(name) {
-  return this.findAll({ costalZone: name});
+PoisSchema.statics.findByName = function(name) {
+  return this.find({ name : name});
+};
+
+PoisSchema.statics.findByRegionId = function(region) {
+  return this.findAll({ costalZone: region});
 };
 
 module.exports = Mongoose.model('Pois', PoisSchema);

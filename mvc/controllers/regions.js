@@ -16,12 +16,8 @@ const Regions = {
       try {
         const region_id = request.params.region_id;
         const region = await Region.findById( region_id );
-        const pois = await Poi.findByRegion( region_id );
 
-        for (const p of pois) {
-            await p.delete();
-            }
-        await region.delete();
+        await region.findByIdAndDelete(region_id);
         response.redirect('/report');
       } catch (err) {
         return h.view('main', { errors: [{ message: err.message }] });

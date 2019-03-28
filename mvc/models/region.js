@@ -13,10 +13,6 @@ const regionSchema = new Schema({
     }
 });
 
-regionSchema.statics.find = function(name) {
-  return this.findAll();
-};
-
 regionSchema.statics.findByTitle = function(name) {
   return this.findOne({ title : name});
 };

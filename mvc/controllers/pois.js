@@ -15,7 +15,7 @@ const Pois = {
     handler: async function(request, h) {
       try {
         region_id = request.params.region_id;
-        const pois = await Pois.findByRegion(region_id).populate('_id').populate('name').populate('description').populate('costalZone');
+        const pois = await Pois.findByRegionId(region_id).populate('_id').populate('name').populate('description').populate('costalZone');
         const region = await Region.findById( region_id );
         return h.view('report', { title: 'Points of Interest', pois: pois, region: region });
       } catch (err) {
@@ -26,11 +26,11 @@ const Pois = {
   editDesc: {
     handler: async function(request, h) {
       try {
-        const region_id = request.params.region_id;
-        const pois_id   = request.params.pois_id;
-        const pois = await Pois.findById( pois_id );
-        const data = request.payload;
-        await pois.update({ description: data.description });
+        const pois_id = request.params.pois_id;
+        const pois    = await Pois.findById( pois_id );
+        const data    = request.payload;
+
+        await pois.findOneAndUpdate({ _id: pois_id, description: data.description });
         response.redirect('/report/'.concat(region_id));
       } catch (err) {
         return h.view('main', { errors: [{ message: err.message }] });
@@ -43,7 +43,8 @@ const Pois = {
         const region_id = request.params.region_id;
         const pois_id   = request.params.pois_id;
         const pois = await Pois.findById( pois_id );
-        await pois.delete();
+
+        await pois.findByIdAndDelete(pois_id);
         response.redirect('/report/'.concat(region_id));
       } catch (err) {
         return h.view('main', { errors: [{ message: err.message }] });
