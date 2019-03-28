@@ -15,8 +15,8 @@ const regionSchema = new Schema({
     _v: Number
 });
 
-regionSchema.statics.findByTitle = function(name) {
-  return this.findOne({ title : name});
+regionSchema.statics.findByTitle = function(title) {
+  return this.findOne({ title : title});
 };
 
 module.exports = Mongoose.model('Regions', regionSchema);

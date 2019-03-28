@@ -3,6 +3,7 @@
 const Region = require('../models/region');
 const Poi    = require('../models/poi');
 const User   = require('../models/user');
+const Mongoose = require('mongoose');
 
 const Regions = {
   home: {
@@ -14,7 +15,7 @@ const Regions = {
   delete: {
     handler: async function(request, h) {
       try {
-        const region_id = request.params.region_id;
+        const region_id = Mongoose.Types.ObjectId(request.params.region_id);
         const region = await Region.findById( region_id );
 
         await region.findByIdAndDelete(region_id);
@@ -27,7 +28,7 @@ const Regions = {
   add: {
     handler: async function(request, h) {
       try {
-        const user_id = request.auth.credentials.id;
+        const user_id = Mongoose.Types.ObjectId(request.auth.credentials.id);
         const user = await User.findById(user_id);
         const data = request.payload;
 

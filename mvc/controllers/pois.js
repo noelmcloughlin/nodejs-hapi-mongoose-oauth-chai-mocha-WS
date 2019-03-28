@@ -3,6 +3,7 @@
 const Region = require('../models/region');
 const User   = require('../models/user');
 const Poi    = require('../models/poi');
+const Mongoose = require('mongoose');
 
 const Pois = {
   home: {
@@ -14,9 +15,10 @@ const Pois = {
   report: {
     handler: async function(request, h) {
       try {
-        const region_id = request.params.region_id;
+        const region_id = Mongoose.Types.ObjectId(request.params.region_id);
         const region = await Region.findById( region_id );
-        const pois   = await Poi.findByRegionId(region_id).populate('name').populate('description').populate('costalZone');
+
+        const pois   = await Poi.findByRegionId(region._id).populate('name').populate('description').populate('costalZone');
         return h.view('report', { title: 'Points of Interest', pois: pois, region: region });
       } catch (err) {
         return h.view('main', { errors: [{ message: err.message }] });
@@ -26,8 +28,8 @@ const Pois = {
   editDesc: {
     handler: async function(request, h) {
       try {
-        const region_id = request.params.region_id;
-        const pois_id   = request.params.pois_id;
+        const region_id = Mongoose.Types.ObjectId(request.params.region_id);
+        const pois_id   = Mongoose.Types.ObjectId(request.params.pois_id);
         const pois = await Pois.findById( pois_id );
         const data = request.payload;
 
@@ -41,11 +43,11 @@ const Pois = {
   delete: {
     handler: async function(request, h) {
       try {
-        const region_id = request.params.region_id;
-        const pois_id   = request.params.pois_id;
+        const region_id = Mongoose.Types.ObjectId(request.params.region_id);
+        const pois_id   = Mongoose.Types.ObjectId(request.params.pois_id);
         const pois      = await Poi.findById( pois_id );
 
-        await pois.findByIdAndDelete(pois_id);
+        await pois.findByIdAndDelete(pois._id);
         response.redirect('/report/'.concat(region_id));
       } catch (err) {
         return h.view('main', { errors: [{ message: err.message }] });
@@ -55,7 +57,7 @@ const Pois = {
   add: {
     handler: async function(request, h) {
       try {
-        const region_id = request.params.region_id;
+        const region_id = Mongoose.Types.ObjectId(request.params.region_id);
         const user_id   = request.auth.credentials.id;
         const user = await User.findById(user_id);
         const data = request.payload;

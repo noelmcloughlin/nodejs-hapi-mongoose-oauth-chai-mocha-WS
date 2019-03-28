@@ -39,24 +39,23 @@ const PoisSchema = new Schema({
     },
   });
 
-PoisSchema.statics.findByNameAndRegionId = function(name, region) {
-  if (! Mongoose.Types.ObjectId.isValid(region) ) {
-      throw "not a valid object id";
+PoisSchema.statics.findByNameAndRegionId = function(name, regionid) {
+  if (! Mongoose.Types.ObjectId.isValid(regionid) ) {
+      throw "not a valid object id" + regionid;
   }
-  return this.find({ name : name, costalZone: region});
+  return this.find({ name : name, costalZone: regionid});
 };
 
 PoisSchema.statics.findByName = function(name) {
-  return this.find({ name : name});
+  return this.findMany({ name : name});
 };
 
-PoisSchema.statics.findByRegionId = function(region) {
-  if (! Mongoose.Types.ObjectId.isValid(region) ) {
-      throw "not a valid object id";
+PoisSchema.statics.findByRegionId = function(regionid) {
+  if (! Mongoose.Types.ObjectId.isValid(regionid) ) {
+      throw "not a valid object id" + regionid;
   }
-  return this.find({ costalZone: region});
+  return this.find({ costalZone: regionid});
   
 };
 
 module.exports = Mongoose.model('Pois', PoisSchema);
-
