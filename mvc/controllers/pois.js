@@ -15,8 +15,9 @@ const Pois = {
     handler: async function(request, h) {
       try {
         const pois = await Pois.find().populate('_id').populate('name').populate('description').populate('costalZone');
-        const region = await Region.find({ pois
-        return h.view('report', { title: 'Points of Interest', pois: pois });
+        const region_id = request.params.region_id;
+        const region = await Region.findById( region_id );
+        return h.view('report', { title: 'Points of Interest', pois: pois, region: region });
       } catch (err) {
         return h.view('main', { errors: [{ message: err.message }] });
       }
@@ -35,6 +36,7 @@ const Pois = {
         return h.view('main', { errors: [{ message: err.message }] });
       }
     }
+  },
   delete: {
     handler: async function(request, h) {
       try {

@@ -22,7 +22,7 @@ const Regions = {
             await p.delete();
             }
         await region.delete();
-        response.redirect('/report);
+        response.redirect('/report');
       } catch (err) {
         return h.view('main', { errors: [{ message: err.message }] });
       }

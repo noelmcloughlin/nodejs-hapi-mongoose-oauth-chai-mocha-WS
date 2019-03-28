@@ -57,7 +57,7 @@ const Accounts = {
         });
         user = await newUser.save();
         request.cookieAuth.set({ id: user.id });
-        return h.redirect('/poi/home');
+        return h.redirect('/home');
       } catch (err) {
         return h.view('signup', { errors: [{ message: err.message }] });
       }
@@ -101,7 +101,7 @@ const Accounts = {
         }
         user.comparePassword(password);
         request.cookieAuth.set({ id: user.id });
-        return h.redirect('/poi/home');
+        return h.redirect('/home');
       } catch (err) {
         return h.view('login', { errors: [{ message: err.message }] });
       }
@@ -151,7 +151,7 @@ const Accounts = {
         user.email = userEdit.email;
         user.password = userEdit.password;
         await user.save();
-        return h.redirect('/settings');
+        return h.redirect('/home');
       } catch (err) {
         return h.view('main', { errors: [{ message: err.message }] });
       }

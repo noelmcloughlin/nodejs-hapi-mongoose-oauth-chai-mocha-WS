@@ -1,13 +1,9 @@
 {% include "layouts/main.html" %}
 
-{% from "partials/macros.njk" import regiontable, regionrow with context %}
-
 <div class="ui pusher">
   <div class="ui inverted vertical masthead center aligned segment">
 
-    {%- if regions %}
-        {% include "partials/mainmenu.njk" %}
-    {%- endif %}
+    {% include "partials/mainmenu.njk" %}
 
       <section class="ui stacked segment">
           <div class="ui grid">
