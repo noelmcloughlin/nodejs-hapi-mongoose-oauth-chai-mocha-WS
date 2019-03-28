@@ -40,6 +40,9 @@ const PoisSchema = new Schema({
   });
 
 PoisSchema.statics.findByNameAndRegionId = function(name, region) {
+  if (! Mongoose.Types.ObjectId.isValid(region) ) {
+      throw "not a valid object id";
+  }
   return this.find({ name : name, costalZone: region});
 };
 
@@ -48,7 +51,11 @@ PoisSchema.statics.findByName = function(name) {
 };
 
 PoisSchema.statics.findByRegionId = function(region) {
+  if (! Mongoose.Types.ObjectId.isValid(region) ) {
+      throw "not a valid object id";
+  }
   return this.find({ costalZone: region});
+  
 };
 
 module.exports = Mongoose.model('Pois', PoisSchema);
