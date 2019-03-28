@@ -26,8 +26,8 @@ const PoisSchema = new Schema({
         northings: String,
       },
       geo: {
-        lat: Number,
-        long: Number
+        lat: Double,
+        long: Double
       }
     },
     cursor: Number,
@@ -47,7 +47,7 @@ PoisSchema.statics.findByName = function(name) {
 };
 
 PoisSchema.statics.findByRegionId = function(region) {
-  return this.findAll({ costalZone: region});
+  return this.find({ costalZone: region});
 };
 
 module.exports = Mongoose.model('Pois', PoisSchema);

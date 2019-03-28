@@ -8,8 +8,8 @@ const regionSchema = new Schema({
     variable: String,
     identifier: String,
     geo: {
-      lat: Number,
-      long: Number
+      lat: Double,
+      long: Double
     }
 });
 
