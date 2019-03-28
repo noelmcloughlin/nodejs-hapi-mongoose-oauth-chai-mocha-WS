@@ -34,7 +34,7 @@ const Pois = {
         const data = request.payload;
 
         await Poi.findOneAndUpdate({ _id: pois_id, description: data.description });
-        return h.redirect('/report/'.concat(region_id));
+        return h.redirect('/report/' + region_id);
       } catch (err) {
         return h.view('main', { errors: [{ message: err.message }] });
       }
@@ -48,7 +48,7 @@ const Pois = {
         const pois      = await Poi.findById( pois_id );
 
         await Poi.findByIdAndDelete( pois_id );
-        return h.redirect('/report/'.concat(region_id));
+        return h.redirect('/report/' + region_id);
       } catch (err) {
         return h.view('main', { errors: [{ message: err.message }] });
       }
@@ -77,7 +77,7 @@ const Pois = {
           costalZone: region_id
         });
         await newPois.save();
-        return h.redirect('/report/'.concat(region_id));
+        return h.redirect('/report/' + region_id);
       } catch (err) {
         return h.view('main', { errors: [{ message: err.message }] });
       }
