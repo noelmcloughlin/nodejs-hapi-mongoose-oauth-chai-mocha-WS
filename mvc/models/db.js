@@ -19,7 +19,7 @@ async function seed_pois() {
   var seeder = require('mais-mongoose-seeder')(Mongoose);
   const Poi = require('./poi');
   const Region = require('./region')
-  const data = require('./data/data3.json');
+  const data = require('./data/data4.json');
   const dbData3 = await seeder.seed(data, { dropDatabase: false, dropCollections: true });
   console.log(dbData3);
 }
