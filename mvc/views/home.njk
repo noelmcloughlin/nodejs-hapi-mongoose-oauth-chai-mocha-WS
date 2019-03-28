@@ -1,4 +1,4 @@
-{% include "layouts/main.html" %}
+{% include "layouts/layout.html" %}
 
 <div class="ui pusher">
   <div class="ui inverted vertical masthead center aligned segment">
@@ -10,7 +10,7 @@
               <aside class="three wide column">
                   <img class="ui image" src="/images/Beacha_sculpture_by_David_Walsh.jpg">
               </aside>
-              <article class="thirteen wide column">
+              <section class="thirteen wide column">
 
                   {%- if regions %}
                       {%- include "partials/regionlist.njk" %}
@@ -20,7 +20,7 @@
                       <br><br><br>
                   {%- endif %}
 
-              </article>
+              </section>
           </div>
       </section>
       <section class="ui stacked segment">
