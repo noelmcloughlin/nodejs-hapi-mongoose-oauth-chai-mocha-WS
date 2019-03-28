@@ -13,12 +13,12 @@ const regionSchema = new Schema({
     }
 });
 
-regionSchema.statics.findByTitle = function(name) {
-  return this.pois.findOne({ title : name});
+regionSchema.statics.find = function(name) {
+  return this.findAll();
 };
 
-regionSchema.statics.findByRegion = function(name) {
-  return this.pois.findOne({ identifier : name});
+regionSchema.statics.findByTitle = function(name) {
+  return this.findOne({ title : name});
 };
 
 module.exports = Mongoose.model('Regions', regionSchema);

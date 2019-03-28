@@ -15,8 +15,8 @@ const Regions = {
     handler: async function(request, h) {
       try {
         const region_id = request.params.region_id;
-        const region = await Regions.findById( region_id );
-        const pois = await Poi.findAll({ costalZone: region_id });
+        const region = await Region.findById( region_id );
+        const pois = await Poi.findByRegion( region_id );
 
         for (const p of pois) {
             await p.delete();
@@ -35,7 +35,7 @@ const Regions = {
         const user = await User.findById(id);
         const data = request.payload;
 
-        const newRegions = new Regions({
+        const newRegion = new Region({
           title: data.title,
           identifier: "**".concat(data.title).concat("**"),
           variable: data.title.trim(),
@@ -44,7 +44,7 @@ const Regions = {
           geo: {},
           _v: 0
         });
-        await newRegions.save();
+        await newRegion.save();
         return h.redirect('/home');
       } catch (err) {
         return h.view('main', { errors: [{ message: err.message }] });
