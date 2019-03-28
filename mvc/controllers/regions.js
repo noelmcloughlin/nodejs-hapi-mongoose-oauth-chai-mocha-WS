@@ -19,7 +19,7 @@ const Regions = {
         const region = await Region.findById( region_id );
 
         await region.findByIdAndDelete(region_id);
-        response.redirect('/report');
+        response.redirect('/home');
       } catch (err) {
         return h.view('main', { errors: [{ message: err.message }] });
       }
