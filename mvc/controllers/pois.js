@@ -30,10 +30,10 @@ const Pois = {
       try {
         const region_id = Mongoose.Types.ObjectId(request.params.region_id);
         const pois_id   = Mongoose.Types.ObjectId(request.params.pois_id);
-        const pois = await Pois.findById( pois_id );
+        const pois = await Pois.findById( pois_id);
         const data = request.payload;
 
-        await pois.findOneAndUpdate({ _id: pois_id, description: data.description });
+        await pois.findOneAndUpdate({ description: data.description });
         response.redirect('/report/' + region_id);
       } catch (err) {
         return h.view('main', { errors: [{ message: err.message }] });
@@ -47,7 +47,7 @@ const Pois = {
         const pois_id   = Mongoose.Types.ObjectId(request.params.pois_id);
         const pois      = await Poi.findById( pois_id );
 
-        await pois.findByIdAndDelete(pois._id);
+        await pois.findByIdAndDelete();
         response.redirect('/report/' + region_id);
       } catch (err) {
         return h.view('main', { errors: [{ message: err.message }] });

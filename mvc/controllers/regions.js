@@ -18,7 +18,7 @@ const Regions = {
         const region_id = Mongoose.Types.ObjectId(request.params.region_id);
         const region = await Region.findById( region_id );
 
-        await region.findByIdAndDelete(region_id);
+        await region.findByIdAndDelete();
         response.redirect('/home');
       } catch (err) {
         return h.view('main', { errors: [{ message: err.message }] });
