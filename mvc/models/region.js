@@ -1,6 +1,7 @@
 'use strict';
 
-const Mongoose = require('mongoose');
+var Mongoose = require('mongoose')
+require('mongoose-long')(Mongoose);
 const Schema = Mongoose.Schema;
 
 const regionSchema = new Schema({
@@ -8,8 +9,8 @@ const regionSchema = new Schema({
     variable: String,
     identifier: String,
     geo: {
-      lat: Number,
-      long: Number
+      lat: Schema.Types.Long,
+      long: Schema.Types.Long
     }
 });
 

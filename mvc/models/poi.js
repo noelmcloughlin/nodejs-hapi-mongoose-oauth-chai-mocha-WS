@@ -1,7 +1,8 @@
 'use strict';
 
 /* https://mongoosejs.com/docs/guide.html#definition */
-const Mongoose = require('mongoose');
+var Mongoose = require('mongoose')
+require('mongoose-long')(Mongoose);
 const Schema = Mongoose.Schema;
 
 /* https://mongoosejs.com/docs/schematypes.html */
@@ -26,8 +27,8 @@ const PoisSchema = new Schema({
         northings: String,
       },
       geo: {
-        lat: Number,
-        long: Number
+        lat: Schema.Types.Long,
+        long: Schema.Types.Long
       }
     },
     cursor: Number,
