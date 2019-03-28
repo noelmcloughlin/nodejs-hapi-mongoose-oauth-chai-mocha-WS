@@ -3,7 +3,7 @@
 <div class="pusher">
     <div class="ui inverted vertical masthead center aligned segment">
 
-        {% include "partials/mainmenu.njk" %}
+      {% include "partials/mainmenu.njk" %}
 
       <section class="ui stacked segment">
           <div class="ui grid">
@@ -12,13 +12,7 @@
               </aside>
               <article class="thirteen wide column">
 
-                  {%- if pois %}
-                      {%- include "partials/poislist.njk" %}
-                  {%- else %}
-                      <header class="ui header"> Oileain - Points Of Interest </header>
-                      <p>Exploring David Walsh's Oileain : Islands of Ireland.</p>
-                      <br><br><br>
-                  {%- endif %}
+                  {%- include "partials/poislist.njk" %}
 
               </article>
           </div>

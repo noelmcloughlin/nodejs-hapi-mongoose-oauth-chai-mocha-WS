@@ -14,6 +14,7 @@ const Pois = {
   report: {
     handler: async function(request, h) {
       try {
+        console.log('hi')
         const pois = await Pois.find().populate('_id').populate('name').populate('description').populate('costalZone');
         region_id = request.params.region_id;
         const region = await Region.findById( region_id );

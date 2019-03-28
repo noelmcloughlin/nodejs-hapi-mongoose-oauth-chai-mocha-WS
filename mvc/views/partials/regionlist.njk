@@ -18,7 +18,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <form class="ui form segment" method="POST">
                         {% for region in regions %}
                           <tr>
                                 <td>{{ region.title }}</td>
@@ -26,17 +25,14 @@
                                 <td>{{ region.identifier }}</td>
                                 <td>{{ region.latitude }}</td>
                                 <td>{{ region.longitude }}</td>
-                                <td><form action="/report/{{ region._id }}">
-                                    <div class="ui large button">
+                                <td><a href="/report/{{ region._id }}" class="ui large button">
                                          <button class="ui blue submit button">View Points of Interest</button>
-                                    </div>
+                                    </a>
                                 </td>
-                                        {% if deletable %}
                                 <td>
-                                    <a href='/home/region/{{ region._id }}/delete' class="ui icon button">
+                                    <a href='/home/region/{{ region._id }}/delete' class="ui large button">
                                     <i class='icon trash'></i></td>
                                 </td>
-                                        {% endif %}
                             </tr>
                         </form>
                         {% endfor %}

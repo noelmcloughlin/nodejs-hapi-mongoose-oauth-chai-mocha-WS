@@ -18,15 +18,15 @@ module.exports = [
   { method: 'POST', path: '/settings', config: Accounts.updateSettings },
 
   //Points of Interest
-  { method: 'GET',  path: '/report/:region_id', config: Pois.report },
-  { method: 'POST', path: '/report/:region_id/poi/add', config: Pois.add },
-  { method: 'GET',  path: '/report/:region_id/poi/:pois_id/delete', config: Pois.delete },
-  { method: 'POST', path: '/report/:region_id/poi/:pois_id/edit/desc', config: Pois.editDesc },
+  { method: 'GET',  path: '/report/{region_id}', config: Pois.report },
+  { method: 'POST', path: '/report/{region_id}/poi/add', config: Pois.add },
+  { method: 'GET',  path: '/report/{region_id}/poi/:{pois_id}/delete', config: Pois.delete },
+  { method: 'POST', path: '/report/{region_id}/poi/:{pois_id}/edit/desc', config: Pois.editDesc },
 
   //Regions
   { method: 'GET',  path: '/home', config: Regions.home },
   { method: 'POST', path: '/home/region/add', config: Regions.add },
-  { method: 'GET',  path: '/home/region/:region_id/delete', config: Regions.delete },
+  { method: 'GET',  path: '/home/region/{region_id}/delete', config: Regions.delete },
 
   {
     method: 'GET',
