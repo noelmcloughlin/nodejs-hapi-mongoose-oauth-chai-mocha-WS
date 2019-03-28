@@ -26,8 +26,8 @@ const PoisSchema = new Schema({
         northings: String,
       },
       geo: {
-        lat: Double,
-        long: Double
+        lat: Number,
+        long: Number
       }
     },
     cursor: Number,
