@@ -11,7 +11,8 @@ const regionSchema = new Schema({
     geo: {
       lat: Schema.Types.Long,
       long: Schema.Types.Long
-    }
+    },
+    _v: Number
 });
 
 regionSchema.statics.findByTitle = function(name) {
