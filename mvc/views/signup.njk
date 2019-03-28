@@ -3,11 +3,7 @@
 <div class="pusher">
     <div class="ui inverted vertical masthead center aligned segment">
 
-        {%- if pois or regions %}
-            {% include "partials/mainmenu.njk" %}
-        {%- else %}
-            {% include "partials/welcomemenu.html" %}
-        {%- endif %}
+        {% include "partials/mainmenu.njk" %}
 
         <section class="ui left aligned doubling one column stackable grid container">
             <div class="column">
@@ -53,7 +49,7 @@
                             </div>
                         </div>
                         <div class="column">
-                             {{ errors }}
+                             {%- include "partials/error.njk" %}
                         </div>
                     </div>
                 </form>

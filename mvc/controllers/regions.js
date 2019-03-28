@@ -1,23 +1,28 @@
 'use strict';
 
-const User   = require('../models/user');
 const Region = require('../models/region');
+const Poi    = require('../models/poi');
+const User   = require('../models/user');
 
 const Regions = {
   home: {
     handler: async function(request, h) {
       const regions = await Region.find();
-      return h.view('home', { title: 'Points of Interest', regions: regions });
+      return h.view('home', { title: 'Regions of Interest', regions: regions });
     }
   },
-  report: {
+  delete: {
     handler: async function(request, h) {
       try {
-        const region = await Region.find().populate('title');
-        return h.view('report', {
-          title: 'Region of Interest',
-          region: region
-        });
+        const region_id = request.params.region_id;
+        const region = await Regions.findById( region_id );
+        const pois = await Poi.findAll({ costalZone: region_id });
+
+        for (const p of pois) {
+            await p.delete();
+            }
+        await region.delete();
+        response.redirect('/report);
       } catch (err) {
         return h.view('main', { errors: [{ message: err.message }] });
       }
@@ -30,13 +35,17 @@ const Regions = {
         const user = await User.findById(id);
         const data = request.payload;
 
-        const newRegion = new Reg({
+        const newRegions = new Regions({
           title: data.title,
-          variable: data.title.toLowerCase().trim(),
-          identifier: '**The '.concat(data.title).concat('**')
+          identifier: "**".concat(data.title).concat("**"),
+          variable: data.title.trim(),
+          latitude: data.latitude,
+          longitude: data.longitude,
+          geo: {},
+          _v: 0
         });
-        await newRegion.save();
-        return h.redirect('/region/report');
+        await newRegions.save();
+        return h.redirect('/home');
       } catch (err) {
         return h.view('main', { errors: [{ message: err.message }] });
       }

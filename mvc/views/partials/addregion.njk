@@ -1,19 +1,23 @@
-                <div class="ui attached message">
-                    <p>Fill out the form below to create new record</p>
-                </div>
-        
-                <form class="ui form segment" action="/region/add" method="POST">
-                    <h3 class="ui header">Create Region</h3>
-                    <div class="field">
-                        <label>Title</label>
-                        <input placeholder="Title" type="text" name="Title">
-                    </div>
-                    <div class="field">
-                        <div class="ui large button">
-                           <button class="ui blue submit button">Create</button>
-                        </div>
-                    </div>
-                    <div class="column">
-                         {{ errors }}
-                    </div>
-                </form>
+<form class="ui segment form" action="/home/region/add" method="POST">
+  <div class="field">
+    <div class="field">
+      <label>Title</label>
+      <input placeholder="irish geographic region category" type="text" name="title">
+    </div>
+  </div>
+  <div class="two fields">
+    <div class="field">
+      <label>Latitude</label>
+      <input placeholder="nn.nnnnnnnn" type="text" name="latitude">
+    </div>
+    <div class="field">
+      <label>Longitude</label>
+      <input placeholder="-nn.nnnnnnnn" type="text" name="longitude">
+    </div>
+  </div>
+  <button class="ui blue submit button"> Add Region</button>
+</form>
+<script>
+    $('.ui.dropdown')
+        .dropdown();
+</script>

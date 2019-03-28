@@ -17,17 +17,16 @@ module.exports = [
   { method: 'GET', path: '/settings', config: Accounts.showSettings },
   { method: 'POST', path: '/settings', config: Accounts.updateSettings },
 
-  //Regions
-  { method: 'GET', path: '/region/home', config: Regions.home },
-  { method: 'GET', path: '/region/report', config: Regions.report },
-  { method: 'POST', path: '/region/add', config: Regions.add },
-//{ method: 'GET', path: '/region/delete/:regionid', config: Regions.delete },
-
   //Points of Interest
-  { method: 'GET', path: '/poi/home', config: Pois.home },
-  { method: 'GET', path: '/poi/report', config: Pois.report },
-  { method: 'POST', path: '/region/poi/add', config: Pois.add },
-//{ method: 'GET', path: '/region/:poi/delete', config: Pois.delete },
+  { method: 'GET',  path: '/report/:region_id', config: Pois.report },
+  { method: 'POST', path: '/report/:region_id/poi/add', config: Pois.add },
+  { method: 'GET',  path: '/report/:region_id/poi/:pois_id/delete', config: Pois.delete },
+  { method: 'POST', path: '/report/:region_id/poi/:pois_id/edit/desc', config: Pois.editDesc },
+
+  //Regions
+  { method: 'GET',  path: '/home', config: Regions.home },
+  { method: 'POST', path: '/home/region/add', config: Regions.add },
+  { method: 'GET',  path: '/home/region/:region_id/delete', config: Regions.delete },
 
   {
     method: 'GET',

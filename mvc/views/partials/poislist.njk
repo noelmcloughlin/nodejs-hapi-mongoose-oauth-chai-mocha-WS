@@ -1,0 +1,52 @@
+   <section class="ui raised segment">
+       <div class="ui grid ">
+           <div class="ui form six wide column">
+               <div class="ui stacked segment">
+        
+                {% if pois %}
+                <table class="ui celled table">
+                    <thead>
+                        <tr>
+                            <th> name </th>
+                            <th> description </th>
+                            <th> category </th>
+                            {% if deletable %}
+                                <th> Action </th>
+                            {% endif %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for poi in pois %}
+                        <tr>
+                            <td>{{ poi.name }}</td>
+                            <td>{{ poi.description }}</td>
+                            <td>{{ poi.costalZone.title }}</td>
+                            <td>
+                                    {% if editable %}
+                                <form class="ui form" action="/report/{{ pois.costalZone }}/poi/{{ pois._id }}/edit/desc" method="POST">
+                                    <div class="ui field">
+                                        <textarea rows="2" name="comment"> {{ pois.description }} </textarea>
+                                    </div>
+                                    <button class="ui tiny blue submit button"> Update description </button>
+                                </form>
+                                    {% endif %}
+                            </td>
+                                    {% if deletable %}
+                            <td>
+                                <a href='/report/{{ pois.costalZone }}/poi/{{ pois._id }}/delete' class="ui icon button">
+                                    <i class='icon trash'></i>
+                                </a>
+                            </td>
+                                    {% endif %}
+
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+   
+           <aside class="six wide column">
+               <img src="images/Beacha_sculpture_by_David_Walsh.jpg" class="ui medium image">
+           </aside>
+       </div>
+   </section>

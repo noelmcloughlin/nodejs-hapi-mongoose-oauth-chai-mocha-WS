@@ -1,23 +1,48 @@
 'use strict';
 
-const User = require('../models/user');
-const Poi  = require('../models/poi');
+const Region = require('../models/region');
+const User   = require('../models/user');
+const Poi    = require('../models/poi');
 
 const Pois = {
   home: {
     handler: async function(request, h) {
-      const pois = await Poi.find();
-      return h.view('home', { title: 'Points of Interest', pois: pois });
+      const regions = await Region.find();
+      return h.view('home', { title: 'Regions of Interest', regions: regions });
     }
   },
   report: {
     handler: async function(request, h) {
       try {
-        const pois = await Pois.find().populate('name').populate('category').populate('description');
-        return h.view('report', {
-          title: 'Points of Interest',
-          pois: pois
-        });
+        const pois = await Pois.find().populate('_id').populate('name').populate('description').populate('costalZone');
+        const region = await Region.find({ pois
+        return h.view('report', { title: 'Points of Interest', pois: pois });
+      } catch (err) {
+        return h.view('main', { errors: [{ message: err.message }] });
+      }
+    }
+  },
+  editDesc: {
+    handler: async function(request, h) {
+      try {
+        const region_id = request.params.region_id;
+        const pois_id   = request.params.pois_id;
+        const pois = await Pois.findById( pois_id );
+        const data = request.payload;
+        await pois.update({ description: data.description });
+        response.redirect('/report/'.concat(region_id));
+      } catch (err) {
+        return h.view('main', { errors: [{ message: err.message }] });
+      }
+    }
+  delete: {
+    handler: async function(request, h) {
+      try {
+        const region_id = request.params.region_id;
+        const pois_id   = request.params.pois_id;
+        const pois = await Pois.findById( pois_id );
+        await pois.delete();
+        response.redirect('/report/'.concat(region_id));
       } catch (err) {
         return h.view('main', { errors: [{ message: err.message }] });
       }
@@ -26,16 +51,24 @@ const Pois = {
   add: {
     handler: async function(request, h) {
       try {
+        const region_id = request.params.region_id;
         const id = request.auth.credentials.id;
         const user = await User.findById(id);
         const data = request.payload;
 
         const newPois = new Pois({
+          coordinates: {
+             irishGrid: {},
+             fullIrishGrid: {},
+             tmcGrid: {},
+             geo: { lat: data.latitude, long: data.longitude }
+          },
           name: "**".concat(data.name).concat("**"),
           nameHtml: "&lt;p&gt;&lt;strong&gt;".concat(data.name).concat("&lt;/strong&gt;&lt;/p&gt;\n"),
           safeName: data.name.replace(' ', '-'),
           cursor: 0,
-          description: data.description
+          description: data.description,
+          costalZone: region_id
         });
         await newPois.save();
         return h.redirect('/poi/report');

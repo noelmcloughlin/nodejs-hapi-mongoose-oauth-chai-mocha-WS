@@ -1,12 +1,12 @@
 {% include "layouts/main.html" %}
 
+{% from "partials/macros.njk" import regiontable, regionrow with context %}
+
 <div class="ui pusher">
   <div class="ui inverted vertical masthead center aligned segment">
 
-    {%- if pois or regions %}
+    {%- if regions %}
         {% include "partials/mainmenu.njk" %}
-    {%- else %}
-        {% include "partials/welcomemenu.html" %}
     {%- endif %}
 
       <section class="ui stacked segment">
@@ -16,19 +16,21 @@
               </aside>
               <article class="ten wide column">
 
-                {%- if pois %}
-                    {%- include "partials/addpoi.njk" %}
+                  {%- if regions %}
+                      {%- include "partials/regionlist.njk" %}
+                  {%- else %}
+                      <header class="ui header"> Oileain - Points Of Interest </header>
+                      <p>Exploring David Walsh's Oileain : Islands of Ireland.</p>
+                      <br><br><br>
+                  {%- endif %}
 
-                {%- elif regions %}
-                    {%- include "partials/addregion.njk" %}
-
-                {%- else %}
-                  <header class="ui header"> Oileain - Points Of Interest </header>
-                  <p>Exploring David Walsh's Oileain : Islands of Ireland.</p>
-                  <br><br><br>
-
-                {%- endif %}
-
+              </article>
+          </div>
+      </section>
+      <section class="ui stacked segment">
+          <div class="ui grid">
+              <article class="ten wide column">
+                  {%- include "partials/addregion.njk" %}
               </article>
           </div>
       </section>
