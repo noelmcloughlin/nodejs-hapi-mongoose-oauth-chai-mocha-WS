@@ -2,6 +2,7 @@
 
 const Dotenv       = require('dotenv');
 const Result       = Dotenv.config();
+const Boom         = require('boom');
 const Hapi         = require('hapi');
 const HapiCookie   = require('hapi-auth-cookie');
 const Vision       = require('vision');
@@ -16,7 +17,7 @@ let Path           = require('path');
 
 require('./mvc/models/db');
 
-const Checklist = [Result, Hapi, HapiCookie, Vision, Inert, Nunjucks, NunjucksHapi, Routes, server, Path]
+const Checklist = [Result, Hapi, HapiCookie, Vision, Inert, Boom, Nunjucks, NunjucksHapi, Routes, server, Path]
 for (const o of Checklist) {
     if (o.error) {
         console.log(o.error.message);
