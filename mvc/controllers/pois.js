@@ -29,11 +29,11 @@ const Pois = {
     handler: async function(request, h) {
       try {
         const region_id = Mongoose.Types.ObjectId(request.params.region_id);
-        const pois_id   = Mongoose.Types.ObjectId(request.params.pois_id);
-        const pois = await Poi.findById( pois_id);
+        const poi_id   = Mongoose.Types.ObjectId(request.params.poi_id);
+        const pois = await Poi.findById( poi_id);
         const data = request.payload;
 
-        await Poi.findOneAndUpdate({ _id: pois_id, description: data.description });
+        await Poi.findOneAndUpdate({ _id: poi_id, description: data.description });
         return h.redirect('/report/' + region_id);
       } catch (err) {
         return h.view('main', { errors: [{ message: err.message }] });
@@ -44,10 +44,10 @@ const Pois = {
     handler: async function(request, h) {
       try {
         const region_id = Mongoose.Types.ObjectId(request.params.region_id);
-        const pois_id   = Mongoose.Types.ObjectId(request.params.pois_id);
-        const pois      = await Poi.findById( pois_id );
+        const poi_id   = Mongoose.Types.ObjectId(request.params.poi_id);
+        const pois      = await Poi.findById( poi_id );
 
-        await Poi.findByIdAndDelete( pois_id );
+        await Poi.findByIdAndDelete( poi_id );
         return h.redirect('/report/' + region_id);
       } catch (err) {
         return h.view('main', { errors: [{ message: err.message }] });

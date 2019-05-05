@@ -10,7 +10,7 @@ const db = Mongoose.connection;
 async function seed_users() {
   var seeder = require('mais-mongoose-seeder')(Mongoose);
   const User = require('./user');
-  const data = require('./data/initdata.json');
+  const data = require('./data/initusers.json');
   const dbData = await seeder.seed(data, { dropDatabase: false, dropCollections: true });
   console.log(dbData);
 }
