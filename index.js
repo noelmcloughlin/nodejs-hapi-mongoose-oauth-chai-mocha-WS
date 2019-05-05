@@ -9,6 +9,8 @@ const Inert        = require('inert');
 const Nunjucks     = require('nunjucks');
 const NunjucksHapi = require('nunjucks-hapi');
 const Routes       = require('./routes');
+const RoutesApi    = require('./routesApi');
+
 const server       = Hapi.server({ port: process.env.PORT || 3000, });
 let Path           = require('path');
 
@@ -43,7 +45,7 @@ async function provision() {
     layoutPath: './mvc/views/layouts',
     partialsPath: './mvc/views/partials',
     isCached: false,
-    layout: false            // warning; true renders (unwanted) raw html! Need false.
+    layout: false            // warning; true renders (unwanted) raw html - nunjunks needs false.
   });
 
   server.auth.strategy('standard', 'cookie', {

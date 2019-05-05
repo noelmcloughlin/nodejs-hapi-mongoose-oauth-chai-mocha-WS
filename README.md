@@ -15,3 +15,4 @@ Server-Rendered Web Application, release 1:
 API Web Service, release 2:
 
 * [x] Work in progress
+* [-] Boom (https://github.com/hapijs/boom)
