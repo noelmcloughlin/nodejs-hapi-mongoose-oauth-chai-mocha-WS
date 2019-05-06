@@ -13,7 +13,7 @@ module.exports = [
   //{ method: 'POST',   path: '/api/regions/{region_id}/pois/{poi_id}/update', config: PoiApi.update },
 
   //Regions API
-  { method: 'GET',    path: '/api/regions',                    config: RegionApi.find }
+  { method: 'GET',    path: '/api/regions',                    config: RegionApi.find },
   { method: 'GET',    path: '/api/regions/{region_id}',        config: RegionApi.findOne }
   //{ method: 'PUT',    path: '/api/regions/{region_id}/add',    config: RegionApi.add },
   //{ method: 'DELETE', path: '/api/regions/{region_id}/delete', config: RegionApi.delete },
