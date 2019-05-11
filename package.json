@@ -26,6 +26,9 @@
     "vision": "^5.4.4"
   },
   "devDependencies": {
+    "axios": "^0.18.0",
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
     "prettier": "^1.16.0"
   },
   "prettier": {

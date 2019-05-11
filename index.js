@@ -1,7 +1,6 @@
 'use strict';
 
 const Dotenv       = require('dotenv');
-const Result       = Dotenv.config();
 const Boom         = require('boom');
 const Hapi         = require('hapi');
 const HapiCookie   = require('hapi-auth-cookie');
@@ -12,12 +11,11 @@ const NunjucksHapi = require('nunjucks-hapi');
 const Routes       = require('./routes');
 const RoutesApi    = require('./routesApi');
 
-const server       = Hapi.server({ port: process.env.PORT || 3000, });
-let Path           = require('path');
-
+Dotenv.config();
+const server = Hapi.server({ port: process.env.HAPI_PORT || 3000, });
 require('./mvc/models/db');
 
-const Checklist = [Result, Hapi, HapiCookie, Vision, Inert, Boom, Nunjucks, NunjucksHapi, Routes, server, Path]
+const Checklist = [Hapi, HapiCookie, Vision, Inert, Boom, Nunjucks, NunjucksHapi, Routes, RoutesApi, server]
 for (const o of Checklist) {
     if (o.error) {
         console.log(o.error.message);
