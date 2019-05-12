@@ -25,7 +25,7 @@ const Regions = {
       }
     },
 
-  create: {
+  createOne: {
     auth: false,
     handler: async function(request, h) {
       const newRegion = new Region(request.payload);

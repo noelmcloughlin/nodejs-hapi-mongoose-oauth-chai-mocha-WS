@@ -3,19 +3,20 @@
 require('dotenv').config();
 const Mongoose = require('mongoose');
 
-Mongoose.connect(process.env.DB);
+let result;
+result = Mongoose.connect(process.env.DB);
 const db = Mongoose.connection;
 const seeder = require('mais-mongoose-seeder')(Mongoose);
 
 async function seed_users() {
   const data = require('./data/users.json');
-  const userDb = await seeder.seed(data, { dropDatabase: true, dropCollections: true });
+  const userDb = await seeder.seed(data, { dropDatabase: false, dropCollections: true });
   console.log(userDb);
 }
 
 async function seed_pois() {
   const data = require('./data/regions_pois.json');
-  const regionDb = await seeder.seed(data, { dropDatabase: true, dropCollections: true });
+  const regionDb = await seeder.seed(data, { dropDatabase: false, dropCollections: true });
   console.log(regionDb);
 }
 
@@ -29,6 +30,12 @@ db.on('disconnected', function() {
 
 db.once('open', function() {
   console.log(`database connected to ${this.name} on ${this.host}`);
-  seed_users();
-  seed_pois();
-})
+  let result = seed_users();
+  if (result){
+    console.log('ok');
+  }
+  result = seed_pois();
+  if (result) {
+    console.log('ok')
+  }
+});

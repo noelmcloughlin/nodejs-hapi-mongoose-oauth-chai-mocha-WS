@@ -1,7 +1,7 @@
 'use strict';
 
 /* https://mongoosejs.com/docs/guide.html#definition */
-var Mongoose = require('mongoose')
+const Mongoose = require('mongoose');
 require('mongoose-long')(Mongoose);
 const Schema = Mongoose.Schema;
 
@@ -39,22 +39,22 @@ const PoisSchema = new Schema({
     },
   });
 
-PoisSchema.statics.findByNameAndRegionId = function(name, regionid) {
-  if (! Mongoose.Types.ObjectId.isValid(regionid) ) {
-      throw "not a valid object id" + regionid;
+PoisSchema.statics.findByNameAndRegionId = function(name, region_id) {
+  if (! Mongoose.Types.ObjectId.isValid(region_id) ) {
+      throw "not a valid object id" + region_id;
   }
-  return this.find({ name : name, costalZone: regionid});
+  return this.find({ name : name, costalZone: region_id});
 };
 
 PoisSchema.statics.findByName = function(name) {
   return this.findMany({ name : name});
 };
 
-PoisSchema.statics.findByRegionId = function(regionid) {
-  if (! Mongoose.Types.ObjectId.isValid(regionid) ) {
-      throw "not a valid object id" + regionid;
+PoisSchema.statics.findByRegionId = function(region_id) {
+  if (! Mongoose.Types.ObjectId.isValid(region_id) ) {
+      throw "not a valid object id" + region_id;
   }
-  return this.find({ costalZone: regionid});
+  return this.find({ costalZone: region_id});
   
 };
 

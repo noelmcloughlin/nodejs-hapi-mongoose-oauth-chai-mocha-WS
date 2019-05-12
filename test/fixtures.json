@@ -1,0 +1,89 @@
+{
+  "users": [
+    {
+      "firstName": "Alan",
+      "lastName": "Jones",
+      "email": "alan@jones.com",
+    },
+    {
+      "firstName": "Marge",
+      "lastName": "Jones",
+      "email": "marge@jones.com",
+    }
+  ],
+  "newUser":
+  {
+      "firstName": "Marge",
+      "lastName": "Jones",
+      "email": "marge@jones.com",
+  },
+  "regions": [
+    {
+        "title": "Leitrim",
+        "variable": "leitrim",
+        "identifier": "**Leitrim**",
+        "geo": {
+            "lat": "44.7",
+            "long": "-5.141"
+        }
+    },
+    {
+        "title": "Mayo",
+        "variable": "mayo",
+        "identifier": "**Mayo**",
+        "geo": {
+            "lat": "43.7",
+            "long": "-5.100"
+        }
+    }
+  ],
+  "setupRegion":
+  {
+    "title": "Leitrim",
+    "variable": "Leitrim",
+    "identifier": "**Leitrim**",
+    "geo": {
+      "lat": "43.7",
+      "long": "-5.100"
+    }
+  },
+  "newRegion":
+  {
+      "title": "Kerry",
+      "variable": "kerry",
+      "identifier": "**Kerry**",
+      "geo": {
+          "lat": "43.7",
+          "long": "-5.100"
+      }
+  },
+  "pois": [
+    {
+      "name": "**Lough Scur**",
+      "nameHtml": "&lt;p&gt;&lt;strong&gt;Lough Scur&lt;/strong&gt;&lt;/p&gt;\n",
+      "safeName": "Lough-Scur",
+      "coordinates": {},
+      "cursor": "147",
+      "description": "Historic Lake",
+      "costalZone": "**Leitrim**"
+    },
+    {
+      "name": "**Lough Marrave**",
+      "nameHtml": "&lt;p&gt;&lt;strong&gt;Lough Marrave&lt;/strong&gt;&lt;/p&gt;\n",
+      "safeName": "Lough-Marrave",
+      "coordinates": {},
+      "cursor": "148",
+      "description":"Historic Lake",
+      "costalZone": "**Leitrim**"
+    }
+  ],
+  "newPoi": {
+      "name": "**Lough Rinn**",
+      "nameHtml": "&lt;p&gt;&lt;strong&gt;Lough Rinn&lt;/strong&gt;&lt;/p&gt;\n",
+      "safeName": "Lough-Rinn",
+      "coordinates": {},
+      "cursor": "148",
+      "description": "Historic Lake",
+      "costalZone": "**Leitrim**"
+  }
+}
