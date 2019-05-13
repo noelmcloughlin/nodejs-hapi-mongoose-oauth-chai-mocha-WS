@@ -12,6 +12,7 @@ class PoiService {
       const response = await axios.get(this.baseUrl + '/api/region');
       return response.data;
     } catch (e) {
+      console.log('arraggghhh');
       return null
     }
   }
@@ -21,6 +22,7 @@ class PoiService {
       const response = await axios.get(this.baseUrl + '/api/region/' + id);
       return response.data;
     } catch (e) {
+      console.log('arraggghhh');
       return null
     }
   }
@@ -30,6 +32,7 @@ class PoiService {
       const response = await axios.post(this.baseUrl + '/api/region', newRegion);
       return response.data;
     } catch (e) {
+      console.log('arraggghhh');
       return null
     }
   }
@@ -39,6 +42,7 @@ class PoiService {
       const response = await axios.delete(this.baseUrl + '/api/region/' + id);
       return response.data;
     } catch (e) {
+      console.log('arraggghhh');
       return null
     }
   }
@@ -48,15 +52,17 @@ class PoiService {
       const response = await axios.delete(this.baseUrl + '/api/region');
       return response.data;
     } catch (e) {
+      console.log('arraggghhh');
       return null
     }
   }
 
-  async getAll() {
+  async getAll(region_id) {
     try {
       const response = await axios.get(this.baseUrl + '/api/region/' + region_id + '/poi');
       return response.data;
     } catch (e) {
+      console.log('arraggghhh');
       return null
     }
   }
@@ -66,6 +72,7 @@ class PoiService {
       const response = await axios.get(this.baseUrl + '/api/region/' + region_id + '/poi/' + id);
       return response.data;
     } catch (e) {
+      console.log('arraggghhh');
       return null
     }
   }
@@ -75,6 +82,7 @@ class PoiService {
       const response = await axios.post(this.baseUrl + '/api/region/' + region_id + '/poi', newPoi);
       return response.data;
     } catch (e) {
+      console.log('arraggghhh');
       return null
     }
   }
@@ -84,6 +92,7 @@ class PoiService {
       const response = await axios.delete(this.baseUrl + '/api/region/' + region_id + '/poi');
       return response.data;
     } catch (e) {
+      console.log('arraggghhh');
       return null
     }
   }
@@ -93,6 +102,7 @@ class PoiService {
       const response = await axios.delete(this.baseUrl + '/api/region/' + region_id + '/poi/' + id);
       return response.data;
     } catch (e) {
+      console.log('arraggghhh');
       return null
     }
   }

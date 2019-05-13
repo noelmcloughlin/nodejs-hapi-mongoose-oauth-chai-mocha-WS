@@ -37,7 +37,7 @@
         }
     }
   ],
-  "setupRegion":
+  "dummyRegion":
   {
     "title": "Leitrim",
     "variable": "Leitrim",
@@ -62,7 +62,27 @@
       "name": "**Lough Scur**",
       "nameHtml": "&lt;p&gt;&lt;strong&gt;Lough Scur&lt;/strong&gt;&lt;/p&gt;\n",
       "safeName": "Lough-Scur",
-      "coordinates": {},
+      "coordinates": {
+        "irishGrid": {
+          "sheet": "C",
+          "eastings": null,
+          "northings": null
+        },
+        "fullIrishGrid": {
+          "sheet": "",
+          "eastings": null,
+          "northings": null
+        },
+        "tmcGrid": {
+          "sheet": "",
+          "eastings": null,
+          "northings": null
+        },
+        "geo": {
+          "lat": null,
+          "long": null
+        }
+      },
       "cursor": "147",
       "description": "Historic Lake",
       "costalZone": "**Leitrim**"
@@ -71,7 +91,27 @@
       "name": "**Lough Marrave**",
       "nameHtml": "&lt;p&gt;&lt;strong&gt;Lough Marrave&lt;/strong&gt;&lt;/p&gt;\n",
       "safeName": "Lough-Marrave",
-      "coordinates": {},
+      "coordinates": {
+        "irishGrid": {
+          "sheet": "C",
+          "eastings": null,
+          "northings": null
+        },
+        "fullIrishGrid": {
+          "sheet": "",
+          "eastings": null,
+          "northings": null
+        },
+        "tmcGrid": {
+          "sheet": "",
+          "eastings": null,
+          "northings": null
+        },
+        "geo": {
+          "lat": null,
+          "long": null
+        }
+      },
       "cursor": "148",
       "description":"Historic Lake",
       "costalZone": "**Leitrim**"
@@ -81,8 +121,28 @@
       "name": "**Lough Rinn**",
       "nameHtml": "&lt;p&gt;&lt;strong&gt;Lough Rinn&lt;/strong&gt;&lt;/p&gt;\n",
       "safeName": "Lough-Rinn",
-      "coordinates": {},
-      "cursor": "148",
+      "coordinates": {
+        "irishGrid": {
+          "sheet": "C",
+          "eastings": null,
+          "northings": null
+        },
+        "fullIrishGrid": {
+          "sheet": "C",
+          "eastings": null,
+          "northings": null
+        },
+        "tmcGrid": {
+          "sheet": "C",
+          "eastings": null,
+          "northings": null
+        },
+        "geo": {
+          "lat": null,
+          "long": null
+        }
+      },
+      "cursor": 148,
       "description": "Historic Lake",
       "costalZone": "**Leitrim**"
   }
