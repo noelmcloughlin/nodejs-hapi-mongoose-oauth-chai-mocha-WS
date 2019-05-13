@@ -1,7 +1,6 @@
 'use strict';
 
 const axios = require('axios');
-const baseUrl = 'http://localhost:3000';
 
 class PoiService {
   constructor(baseUrl) {
@@ -10,7 +9,7 @@ class PoiService {
 
   async getAllRegions() {
     try {
-      const response = await axios.get(this.baseUrl + '/api/regions');
+      const response = await axios.get(this.baseUrl + '/api/region');
       return response.data;
     } catch (e) {
       return null
@@ -19,7 +18,7 @@ class PoiService {
 
   async getRegion(id) {
     try {
-      const response = await axios.get(this.baseUrl + '/api/regions/' + id);
+      const response = await axios.get(this.baseUrl + '/api/region/' + id);
       return response.data;
     } catch (e) {
       return null
@@ -28,7 +27,7 @@ class PoiService {
 
   async createRegion(newRegion) {
     try {
-      const response = await axios.post(this.baseUrl + '/api/regions/' + newRegion);
+      const response = await axios.post(this.baseUrl + '/api/region', newRegion);
       return response.data;
     } catch (e) {
       return null
@@ -37,7 +36,7 @@ class PoiService {
 
   async deleteRegion(id) {
     try {
-      const response = await axios.delete(this.baseUrl + '/api/regions/' + id);
+      const response = await axios.delete(this.baseUrl + '/api/region/' + id);
       return response.data;
     } catch (e) {
       return null
@@ -46,7 +45,7 @@ class PoiService {
 
   async deleteAllRegions() {
     try {
-      const response = await axios.delete(this.baseUrl + '/api/regions');
+      const response = await axios.delete(this.baseUrl + '/api/region');
       return response.data;
     } catch (e) {
       return null
@@ -55,7 +54,7 @@ class PoiService {
 
   async getAll() {
     try {
-      const response = await axios.get(this.baseUrl + '/api/regions/' + region_id + 'pois');
+      const response = await axios.get(this.baseUrl + '/api/region/' + region_id + '/poi');
       return response.data;
     } catch (e) {
       return null
@@ -64,7 +63,7 @@ class PoiService {
 
   async get(region_id, id) {
     try {
-      const response = await axios.get(this.baseUrl + '/api/regions/' + region_id + 'pois/' + id);
+      const response = await axios.get(this.baseUrl + '/api/region/' + region_id + '/poi/' + id);
       return response.data;
     } catch (e) {
       return null
@@ -73,7 +72,7 @@ class PoiService {
 
   async create(region_id, newPoi) {
     try {
-      const response = await axios.post(this.baseUrl + '/api/regions/' + region_id + 'pois/' + newPoi);
+      const response = await axios.post(this.baseUrl + '/api/region/' + region_id + '/poi', newPoi);
       return response.data;
     } catch (e) {
       return null
@@ -82,7 +81,7 @@ class PoiService {
 
   async deleteAll(region_id) {
     try {
-      const response = await axios.delete(this.baseUrl + '/api/regions/' + region_id + '/pois');
+      const response = await axios.delete(this.baseUrl + '/api/region/' + region_id + '/poi');
       return response.data;
     } catch (e) {
       return null
@@ -91,7 +90,7 @@ class PoiService {
 
   async delete(region_id, id) {
     try {
-      const response = await axios.delete(this.baseUrl + '/api/regions/' + region_id + '/pois/' + id);
+      const response = await axios.delete(this.baseUrl + '/api/region/' + region_id + '/poi/' + id);
       return response.data;
     } catch (e) {
       return null

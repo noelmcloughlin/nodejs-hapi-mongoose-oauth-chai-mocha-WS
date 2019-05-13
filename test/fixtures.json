@@ -3,19 +3,19 @@
     {
       "firstName": "Alan",
       "lastName": "Jones",
-      "email": "alan@jones.com",
+      "email": "alan@jones.com"
     },
     {
       "firstName": "Marge",
       "lastName": "Jones",
-      "email": "marge@jones.com",
+      "email": "marge@jones.com"
     }
   ],
   "newUser":
   {
       "firstName": "Marge",
       "lastName": "Jones",
-      "email": "marge@jones.com",
+      "email": "marge@jones.com"
   },
   "regions": [
     {
@@ -23,8 +23,8 @@
         "variable": "leitrim",
         "identifier": "**Leitrim**",
         "geo": {
-            "lat": "44.7",
-            "long": "-5.141"
+          "lat": null,
+          "long": null
         }
     },
     {
@@ -32,8 +32,8 @@
         "variable": "mayo",
         "identifier": "**Mayo**",
         "geo": {
-            "lat": "43.7",
-            "long": "-5.100"
+          "lat": null,
+          "long": null
         }
     }
   ],
@@ -43,19 +43,19 @@
     "variable": "Leitrim",
     "identifier": "**Leitrim**",
     "geo": {
-      "lat": "43.7",
-      "long": "-5.100"
+      "lat": null,
+      "long": null
     }
   },
   "newRegion":
   {
-      "title": "Kerry",
-      "variable": "kerry",
-      "identifier": "**Kerry**",
-      "geo": {
-          "lat": "43.7",
-          "long": "-5.100"
-      }
+    "title": "Kerry",
+    "variable": "kerry",
+    "identifier": "**Kerry**",
+    "geo": {
+      "lat": null,
+      "long": null
+    }
   },
   "pois": [
     {

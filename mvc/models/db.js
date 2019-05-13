@@ -4,7 +4,7 @@ require('dotenv').config();
 const Mongoose = require('mongoose');
 
 let result;
-result = Mongoose.connect(process.env.DB);
+result = Mongoose.connect(process.env.DB, { useNewUrlParser: true });
 const db = Mongoose.connection;
 const seeder = require('mais-mongoose-seeder')(Mongoose);
 

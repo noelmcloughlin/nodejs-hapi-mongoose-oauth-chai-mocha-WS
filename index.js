@@ -61,6 +61,7 @@ async function provision() {
  });
 
   server.route(Routes);
+  server.route(RoutesApi);
   await server.start();
   console.log(`Server running at: ${server.info.uri}`);
 }

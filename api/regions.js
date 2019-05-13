@@ -1,8 +1,9 @@
 const Region = require('../mvc/models/region');
+const Boom = require('Boom');
 
 const Regions = {
 
-  find: {
+  findAll: {
     auth: false,
     handler: async function(request, h) {
       const regions = await Region.find();
@@ -10,7 +11,7 @@ const Regions = {
     }
   },
 
-    findOne: {
+    find: {
       auth: false,
       handler: async function(request, h) {
         try {
@@ -25,7 +26,7 @@ const Regions = {
       }
     },
 
-  createOne: {
+  create: {
     auth: false,
     handler: async function(request, h) {
       const newRegion = new Region(request.payload);
@@ -39,7 +40,7 @@ const Regions = {
     }
   },
 
-  deleteOne: {
+  delete: {
     auth: false,
     handler: async function(request, h) {
       const region = await Region.remove({ _region_id: request.params.id });
@@ -65,3 +66,5 @@ const Regions = {
     }
   }
 };
+
+module.exports = Regions;

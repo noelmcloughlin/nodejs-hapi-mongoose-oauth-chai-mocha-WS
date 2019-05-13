@@ -3,11 +3,14 @@
 // "https://wit-hdip-comp-sci-2018-donation-web-3.glitch.me"
 
 const _ = require("lodash");
-const suite = require('mocha');
-const { assert: assert1 } = require("chai");
-const assert = assert1;
+const suite = require('mocha').suite;
+const assert = require('chai').assert;
 const PoiService = require("./poi-service");
 const fixtures = require("./fixtures.json");
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 suite("Points of Interest API tests", function () {
 
@@ -17,16 +20,15 @@ suite("Points of Interest API tests", function () {
   let newRegion = fixtures.newRegion;
   let region_id;
 
-  const poisService = new PoiService("http://localhost:4000");
+  const poisService = new PoiService("http://localhost:3000");
 
   // BEFORE TEST
   setup(async function() {
     await poisService.deleteAll();
     await poisService.deleteAllRegions();
-    await poisService.createRegion(fixtures.setupRegion);
-    let region = await poisService.getAllRegions();
-    region_id = region[0]._id;
-    newRegion.costalZone = region_id;
+    let result = await poisService.createRegion(fixtures.setupRegion);
+    region_id = result._id;
+    newPoi.costalZone = region_id;
   });
 
   // AFTER TEST
@@ -34,23 +36,12 @@ suite("Points of Interest API tests", function () {
     await poisService.deleteAll();
   });
 
-
   // CREATE REGION
 
   test("Create a Region", async function() {
     const returnedRegion = await poisService.createRegion(newRegion);
-    assert(returnedRegion != null, "created region cannot be null");
     assert(_.some([returnedRegion], newRegion), "created region must be superset of NewRegion");
-    assert.isDefined(returnedRegion._id, "created region must have id");
-  });
-
-  // CREATE REGION DUPLICATE
-
-  test("Create a duplicate Region", async function() {
-    const returnedRegion = await poisService.createRegion(newRegion);
-    assert.isDefined(returnedRegion._id, "created region must have id");
-    let result = await poisService.createRegion(newRegion);
-    assert.isNull(result);
+    assert.isDefined(returnedRegion._id);
   });
 
   // DELETE REGION
@@ -59,7 +50,6 @@ suite("Points of Interest API tests", function () {
     const returnedRegion = await poisService.createRegion(newRegion);
     assert.isDefined(returnedRegion._id, "created region must have id");
     let result = await poisService.deleteRegion(returnedRegion._id);
-    assert(result != null, "delete should not be null");
     result = await poisService.getRegion(returnedRegion._id);
     assert.isNull(result);
   });
@@ -68,7 +58,7 @@ suite("Points of Interest API tests", function () {
 
   test("Delete a non-existing Region", async function() {
     let result = await poisService.getRegion('123455');
-    assert(result == null, "delete result should be null");
+    assert.equal(result, 0);
     result = await poisService.deleteRegion('123455');
     assert.isNull(result);
   });
@@ -125,7 +115,7 @@ suite("Points of Interest API tests", function () {
 
   // FIND ALL REGION DETAILED
 
-  test("Get all REGION detail", async function () {
+  test("Get all Region detail", async function () {
     for (let r of regions) {
       await poisService.createRegion(r);
     }
@@ -137,7 +127,7 @@ suite("Points of Interest API tests", function () {
 
   // FIND ALL REGION NONE EXIST
 
-  test("Get all REGION none exist", async function () {
+  test("Get all Region none exist", async function () {
     await poisService.deleteRegion(region_id);
     const allRegions = await poisService.getAllRegions();
     assert.equal(allRegions.length, 0);

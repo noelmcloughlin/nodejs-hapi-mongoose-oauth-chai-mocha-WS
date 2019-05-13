@@ -1,8 +1,9 @@
 const Poi = require('../mvc/models/poi');
+const Boom = require('Boom');
 
 const Pois = {
 
-  find: {
+  findAll: {
     auth: false,
     handler: async function(request, h) {
       const pois = await Poi.find();
@@ -10,11 +11,11 @@ const Pois = {
     }
   },
 
-  findOne: {
+  find: {
     auth: false,
     handler: async function(request, h) {
       try {
-        const poi = await Poi.findOne({ _poi_id: request.params.poi_id });
+        const poi = await Poi.findOne({ _poi_id: request.params._id });
         if (!poi) {
           return Boom.notFound('No point-of-interest with this id');
         }
@@ -39,7 +40,7 @@ const Pois = {
     }
   },
 
-  deleteOne: {
+  delete: {
     auth: false,
     handler: async function(request, h) {
       const poi = await Poi.remove({ _poi_id: request.params.id });
@@ -65,3 +66,5 @@ const Pois = {
     }
   }
 };
+
+module.exports = Pois;
