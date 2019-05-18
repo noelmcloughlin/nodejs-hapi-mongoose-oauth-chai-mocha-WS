@@ -1,21 +1,18 @@
 'use strict';
 
 const Accounts = require('./mvc/controllers/accounts');
-const About   = require('./mvc/controllers/about');
 const Regions = require('./mvc/controllers/regions');
 const Pois    = require('./mvc/controllers/pois');
 
 module.exports = [
   { method: 'GET', path: '/', config: Accounts.index },
   { method: 'GET', path: '/privacy/ok', config: Accounts.index },
-  { method: 'GET', path: '/privacy', config: About.privacy },
-  { method: 'GET', path: '/login', config: Accounts.showLogin },
+  { method: 'GET', path: '/privacy', config: Accounts.privacy },
+
+  { method: 'GET', path: '/login', config: Accounts.login },
   { method: 'GET', path: '/logout', config: Accounts.logout },
-  { method: 'GET', path: '/signup/show', config: Accounts.showSignup },
-  { method: 'POST', path: '/signup/submit', config: Accounts.submitSignup },
-  { method: 'POST', path: '/login', config: Accounts.login },
-  { method: 'GET', path: '/settings', config: Accounts.showSettings },
-  { method: 'POST', path: '/settings', config: Accounts.updateSettings },
+  { method: 'GET', path: '/settings', config: Accounts.account },
+  { method: 'POST', path: '/settings', config: Accounts.userInfo },
 
   //Points of Interest
   { method: 'GET',  path: '/report/{region_id}', config: Pois.report },

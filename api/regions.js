@@ -6,25 +6,25 @@ const Regions = {
   findAll: {
     auth: false,
     handler: async function(request, h) {
-      const regions = await Region.find();
+      const regions = await Region.findAll();
       return regions
     }
   },
 
-    find: {
-      auth: false,
-      handler: async function(request, h) {
-        try {
-          const region = await Region.findOne({ _region_id: request.params.region_id });
-          if (!region) {
-            return Boom.notFound('No region with this id');
-          }
-          return region;
-        } catch (err) {
-          return Boom.notFound('No region with that id');
+  find: {
+    auth: false,
+    handler: async function(request, h) {
+      try {
+        const region = await Region.findOne({ _region_id: request.params.region_id });
+        if (!region) {
+          return Boom.notFound('No region with this id');
         }
+        return region;
+      } catch (err) {
+        return Boom.notFound('No region with that id');
       }
-    },
+    }
+  },
 
   create: {
     auth: false,
@@ -43,7 +43,7 @@ const Regions = {
   delete: {
     auth: false,
     handler: async function(request, h) {
-      const region = await Region.remove({ _region_id: request.params.id });
+      const region = await Region.delete({ _region_id: request.params.id });
       if (region) {
         // delete success
         return { success: true };
@@ -56,13 +56,13 @@ const Regions = {
   deleteAll: {
     auth: false,
     handler: async function(request, h) {
-      const region = await Region.remove({});
+      const region = await Region.delete({});
       if (region) {
         // delete success
         return { success: true };
       }
       // delete failed
-      return Boom.notFound('Regions deleteAll failed')
+      return Boom.notFound('Region deleteAll failed')
     }
   }
 };

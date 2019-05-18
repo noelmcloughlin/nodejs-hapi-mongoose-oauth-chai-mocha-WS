@@ -5,7 +5,7 @@ require('mongoose-long')(Mongoose);
 const Schema = Mongoose.Schema;
 const { Long } = Schema.Types;
 
-const regionSchema = new Schema({
+const RegionSchema = new Schema({
     title: String,
     variable: String,
     identifier: String,
@@ -16,8 +16,19 @@ const regionSchema = new Schema({
     _v: Number
 });
 
-regionSchema.statics.findByTitle = function(title) {
+RegionSchema.statics.findById = function(id) {
+  if (! Mongoose.Types.ObjectId.isValid(id) ) {
+    throw "not a valid object id" + id;
+  }
+  return this.findOne({ _id: id});
+};
+
+RegionSchema.statics.findAll = function() {
+  return this.find({});
+};
+
+RegionSchema.statics.findByTitle = function(title) {
   return this.findOne({ title : title});
 };
 
-module.exports = Mongoose.model('Regions', regionSchema);
+module.exports = Mongoose.model('Regions', RegionSchema);

@@ -6,7 +6,7 @@ const Pois = {
   findAll: {
     auth: false,
     handler: async function(request, h) {
-      const pois = await Poi.find();
+      const pois = await Poi.findAll();
       return pois;
     }
   },
@@ -15,7 +15,7 @@ const Pois = {
     auth: false,
     handler: async function(request, h) {
       try {
-        const poi = await Poi.findOne({ _poi_id: request.params._id });
+        const poi = await Poi.find({ _poi_id: request.params._id });
         if (!poi) {
           return Boom.notFound('No point-of-interest with this id');
         }
@@ -43,7 +43,7 @@ const Pois = {
   delete: {
     auth: false,
     handler: async function(request, h) {
-      const poi = await Poi.remove({ _poi_id: request.params.id });
+      const poi = await Poi.deleteOne({ _poi_id: request.params.id });
       if (poi) {
         // delete success
         return { success: true };
@@ -56,7 +56,7 @@ const Pois = {
   deleteAll: {
     auth: false,
     handler: async function(request, h) {
-      const poi = await Poi.remove({});
+      const poi = await Poi.deleteMany({});
       if (poi) {
         // delete success
         return { success: true };

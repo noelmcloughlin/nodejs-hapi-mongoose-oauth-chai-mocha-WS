@@ -1,22 +1,4 @@
 {
-  "users": [
-    {
-      "firstName": "Alan",
-      "lastName": "Jones",
-      "email": "alan@jones.com"
-    },
-    {
-      "firstName": "Marge",
-      "lastName": "Jones",
-      "email": "marge@jones.com"
-    }
-  ],
-  "newUser":
-  {
-      "firstName": "Marge",
-      "lastName": "Jones",
-      "email": "marge@jones.com"
-  },
   "regions": [
     {
         "title": "Leitrim",
