@@ -26,7 +26,9 @@
       <section class="ui stacked segment">
           <div class="ui grid">
               <article class="ten wide column">
-                  {%- include "partials/addregion.njk" %}
+                  {%- if regions %}
+                      {%- include "partials/addregion.njk" %}
+                  {%- endif %}
               </article>
           </div>
       </section>

@@ -2,17 +2,13 @@
 
 POINTS OF INTEREST
 
-Server-Rendered Web Application, release 1:
+Server-Rendered Web Application
 
 * [x] Front End [ nunjunks, semantic-ui, jquery ]
-* [x] Components [boom, dotenv,, mongoose, mais-mongoose-seeder ]
+* [x] Components [ axios, boom, dotenv, lodash, mongoose, mongoose-long, mais-mongoose-seeder ]
 * [x] Backend. [ hapi, joi, vision, inert ]
-* [x] Infrastructure. [ node, mongodb ]
+* [x] Infrastructure. [ node, mongodb cloud, oAuth ]
+* [x] Unit Tests [ chai, mocha ]
 
 # ![](preview_r1.png)
 
-
-API Web Service, release 2:
-
-* [x] Work in progress
-* [-] Boom (https://github.com/hapijs/boom)

@@ -20,7 +20,9 @@
       <section class="ui stacked segment">
           <div class="ui grid">
               <article class="ten wide column">
-                  {%- include "partials/addregion.njk" %}
+                  {%- if pois %}
+                      {%- include "partials/addpoi.njk" %}
+                  {%- endif %}
               </article>
               {%- include "partials/error.njk" %}
           </div>

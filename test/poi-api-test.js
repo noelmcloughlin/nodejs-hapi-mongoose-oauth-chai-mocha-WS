@@ -126,5 +126,3 @@ suite("Points of Interest API tests", function () {
     assert.equal(result.length, 0);
   });
 });
-
-

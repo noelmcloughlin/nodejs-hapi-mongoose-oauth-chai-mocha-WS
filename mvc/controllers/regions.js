@@ -39,7 +39,6 @@ const Regions = {
           geo: {},
           _v: 0
         });
-
         await newRegion.save();
         return h.redirect('/home');
       } catch (err) {
