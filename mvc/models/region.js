@@ -1,22 +1,34 @@
 'use strict';
 
-var Mongoose = require('mongoose')
+let Mongoose = require('mongoose');
 require('mongoose-long')(Mongoose);
 const Schema = Mongoose.Schema;
+const { Long } = Schema.Types;
 
-const regionSchema = new Schema({
+const RegionSchema = new Schema({
     title: String,
     variable: String,
     identifier: String,
     geo: {
       lat: Schema.Types.Long,
-      long: Schema.Types.Long
+      long: Long
     },
     _v: Number
 });
 
-regionSchema.statics.findByTitle = function(title) {
+RegionSchema.statics.findById = function(id) {
+  if (! Mongoose.Types.ObjectId.isValid(id) ) {
+    throw "not a valid object id" + id;
+  }
+  return this.findOne({ _id: id});
+};
+
+RegionSchema.statics.findAll = function() {
+  return this.find({});
+};
+
+RegionSchema.statics.findByTitle = function(title) {
   return this.findOne({ title : title});
 };
 
-module.exports = Mongoose.model('Regions', regionSchema);
+module.exports = Mongoose.model('Regions', RegionSchema);

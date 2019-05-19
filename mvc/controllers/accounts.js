@@ -1,166 +1,83 @@
 'use strict';
 
-const Boom = require('boom');
-const User = require('../models/user');
-const Joi = require('joi');
-
 const Accounts = {
-  index: {
-    auth: false,
-    handler: function(request, h) {
-      return h.view('main', { title: 'Welcome to Points Of Interest' });
-    }
-  },
-  showSignup: {
-    auth: false,
-    handler: function(request, h) {
-      return h.view('signup', { title: 'Sign up for Points of Interest' });
-    }
-  },
-  submitSignup: {
-    auth: false,
-    validate: {
-      payload: {
-        firstName: Joi.string().required(),
-        lastName: Joi.string().required(),
-        email: Joi.string()
-          .email()
-          .required(),
-        password: Joi.string().required()
-      },
-      options: {
-        abortEarly: false
-      },
-      failAction: function(request, h, error) {
-        return h
-          .view('signup', {
-            title: 'Sign up error',
-            errors: error.details
-          })
-          .takeover()
-          .code(400);
-      }
-    },
-    handler: async function(request, h) {
-      try {
-        const payload = request.payload;
-        let user = await User.findByEmail(payload.email);
-        if (user) {
-          const message = 'Email address is already registered';
-          throw new Boom(message);
-        }
-        const newUser = new User({
-          firstName: payload.firstName,
-          lastName: payload.lastName,
-          email: payload.email,
-          password: payload.password
-        });
-        user = await newUser.save();
-        request.cookieAuth.set({ id: user.id });
-        return h.redirect('/home');
-      } catch (err) {
-        return h.view('signup', { errors: [{ message: err.message }] });
-      }
-    }
-  },
-  showLogin: {
-    auth: false,
-    handler: function(request, h) {
-      return h.view('login', { title: 'Login to Points Of Interest' });
-    }
-  },
   login: {
-    auth: false,
-    validate: {
-      payload: {
-        email: Joi.string()
-          .email()
-          .required(),
-        password: Joi.string().required()
-      },
-      options: {
-        abortEarly: false
-      },
-      failAction: function(request, h, error) {
-        return h
-          .view('login', {
-            title: 'Sign in error',
-            errors: error.details
-          })
-          .takeover()
-          .code(400);
-      }
-    },
-    handler: async function(request, h) {
-      const { email, password } = request.payload;
+    auth: 'github-oauth',
+    handler: function (request, h) {
       try {
-        let user = await User.findByEmail(email);
-        if (!user) {
-          const message = 'Email address is not registered';
-          throw new Boom(message);
+        if (request.auth.isAuthenticated) {
+          request.cookieAuth.set(request.auth.credentials);
+          return h.redirect('/home');
         }
-        user.comparePassword(password);
-        request.cookieAuth.set({ id: user.id });
-        return h.redirect('/home');
+        return h.redirect('/');
       } catch (err) {
         return h.view('login', { errors: [{ message: err.message }] });
       }
     }
   },
-  showSettings: {
-    handler: async function(request, h) {
+  account: {
+    auth: 'cookie-auth',
+    handler: function (request, h) {
       try {
-        const id = request.auth.credentials.id;
-        const user = await User.findById(id);
-        return h.view('settings', { title: 'Points Of Interest Settings', user: user });
+        if (request.auth.isAuthenticated) {
+          return (request.auth.credentials.profile);
+        }
+        return ('Not logged in...');
       } catch (err) {
         return h.view('login', { errors: [{ message: err.message }] });
       }
     }
   },
-  updateSettings: {
-    validate: {
-      payload: {
-        firstName: Joi.string().required(),
-        lastName: Joi.string().required(),
-        email: Joi.string()
-          .email()
-          .required(),
-        password: Joi.string().required()
-      },
-      options: {
-        abortEarly: false
-      },
-      failAction: function(request, h, error) {
-        return h
-          .view('settings', {
-            title: 'Update settings error',
-            errors: error.details
-          })
-          .takeover()
-          .code(400);
+  userInfo: {
+    auth: 'cookie-auth',
+    handler: function (request, h) {
+      try {
+        if (request.auth.isAuthenticated) {
+          return ('<h2>From your OAuth profile</h2>'
+            + '<b>User name:</b> ' + request.auth.credentials.profile.username
+            + '<br><b>Display name:</b> ' + request.auth.credentials.profile.displayName
+            + '<br><b>Email address:</b> ' + request.auth.credentials.profile.email
+            + '<br><b>Affiliation:</b> ' + request.auth.credentials.profile.raw.company);
+        }
+        return ('Not logged in...');
+      } catch (err) {
+        return h.view('login', { errors: [{ message: err.message }] });
       }
+    }
+  },
+  index: {
+    auth: {
+      mode: 'optional'
     },
-    handler: async function(request, h) {
+    handler: function(request, h) {
       try {
-        const userEdit = request.payload;
-        const id = request.auth.credentials.id;
-        const user = await User.findById(id);
-        user.firstName = userEdit.firstName;
-        user.lastName = userEdit.lastName;
-        user.email = userEdit.email;
-        user.password = userEdit.password;
-        await user.save();
-        return h.redirect('/home');
+        if (request.auth.isAuthenticated) {
+          return h.view('main', { title: 'Welcome to Points Of Interest' + request.auth.credentials.profile.displayName });
+        } else {
+          return h.view('main', { title: 'Welcome to Points Of Interest' });
+        }
       } catch (err) {
-        return h.view('main', { errors: [{ message: err.message }] });
+        return h.view('login', { errors: [{ message: err.message }] });
       }
     }
   },
   logout: {
+    auth: false,
     handler: function(request, h) {
-      request.cookieAuth.clear();
+      try {
+          request.cookieAuth.clear();
+      } catch (err) {
+      return h.view('login', { errors: [{ message: err.message }] });
+      }
       return h.redirect('/');
+    }
+  },
+  privacy: {
+    auth: {
+      mode: 'optional'
+    },
+    handler: function(request, h) {
+      return h.view('privacy', { title: 'Privacy of your Data' });
     }
   }
 };

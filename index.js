@@ -1,20 +1,20 @@
 'use strict';
 
+const Bell         = require('bell');
+const Boom         = require('boom');
+const Cookie       = require('hapi-auth-cookie');
 const Dotenv       = require('dotenv');
-const Result       = Dotenv.config();
 const Hapi         = require('hapi');
-const HapiCookie   = require('hapi-auth-cookie');
-const Vision       = require('vision');
 const Inert        = require('inert');
+const Nanoid       = require('nanoid');
 const Nunjucks     = require('nunjucks');
 const NunjucksHapi = require('nunjucks-hapi');
 const Routes       = require('./routes');
-const server       = Hapi.server({ port: process.env.PORT || 3000, });
-let Path           = require('path');
+const RoutesApi    = require('./routesApi');
+const Vision       = require('vision');
 
-require('./mvc/models/db');
-
-const Checklist = [Result, Hapi, HapiCookie, Vision, Inert, Nunjucks, NunjucksHapi, Routes, server, Path]
+// Sanity check modules
+const Checklist = [Bell, Boom, Cookie, Hapi, Vision, Inert, Nanoid, Nunjucks, NunjucksHapi, Routes, RoutesApi];
 for (const o of Checklist) {
     if (o.error) {
         console.log(o.error.message);
@@ -22,6 +22,12 @@ for (const o of Checklist) {
     }
 }
 
+// Setup environment
+Dotenv.config();
+const server = Hapi.server({ port: process.env.BASE_URL_PORT || 3000, });
+require('./mvc/models/db');
+
+// Setup Rendering engine
 Nunjucks.installJinjaCompat();
 Nunjucks.configure('views', {
     autoescape: true,
@@ -30,9 +36,10 @@ Nunjucks.configure('views', {
 });
 
 async function provision() {
+  await server.register(Bell);
+  await server.register(Cookie);
   await server.register(Inert);
   await server.register(Vision);
-  await server.register(HapiCookie);
 
   server.views({
     engines: {
@@ -43,25 +50,31 @@ async function provision() {
     layoutPath: './mvc/views/layouts',
     partialsPath: './mvc/views/partials',
     isCached: false,
-    layout: false            // warning; true renders (unwanted) raw html! Need false.
+    layout: false        // warning; true renders (unwanted) raw html - nunjunks needs false.
   });
 
-  server.auth.strategy('standard', 'cookie', {
-    password: process.env.cookie_password,
-    cookie: process.env.cookie_name,
-    isSecure: false,
-    ttl: 24 * 60 * 60 * 1000,
-    redirectTo: '/'
-  });
+  let authCookieOptions = {
+    password: Nanoid() + Nanoid(),  // String to encrypt auth cookie during authorization(min 32 chars)
+    isSecure: false                 // 'true' in production (requires HTTPS)
+  };
 
-  server.auth.default({
-    mode: 'required',
-    strategy: 'standard'
- });
+  server.auth.strategy('cookie-auth', 'cookie', authCookieOptions);
+
+  let bellAuthOptions = {
+    provider: process.env.OAUTH_PROVIDER,
+    password: Nanoid() + Nanoid(),                  // String to encrypt temp cookie during authorization
+    clientId: process.env.OAUTH_CLIENT_ID,          // *** Replace with your app Client Id ****
+    clientSecret: process.env.OAUTH_CLIENT_SECRET,  // *** Replace with your app Client Secret ***
+    isSecure: false                                 // 'true' in production (requires HTTPS)
+  };
+
+  server.auth.strategy('github-oauth', 'bell', bellAuthOptions);
+  server.auth.default('cookie-auth');
 
   server.route(Routes);
+  server.route(RoutesApi);
   await server.start();
-  console.log(`Server running at: ${server.info.uri}`);
+  console.log(`server running at: ${server.info.uri}`);
 }
 
 process.on('unhandledRejection', err => {

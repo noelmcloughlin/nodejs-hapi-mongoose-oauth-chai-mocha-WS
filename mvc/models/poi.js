@@ -1,7 +1,7 @@
 'use strict';
 
 /* https://mongoosejs.com/docs/guide.html#definition */
-var Mongoose = require('mongoose')
+const Mongoose = require('mongoose');
 require('mongoose-long')(Mongoose);
 const Schema = Mongoose.Schema;
 
@@ -35,13 +35,13 @@ const PoisSchema = new Schema({
     description: String,
     costalZone: {
         type: Schema.Types.ObjectId,
-        ref: 'Regions',
+        ref: 'Region',
     },
   });
 
 PoisSchema.statics.findByNameAndRegionId = function(name, regionid) {
   if (! Mongoose.Types.ObjectId.isValid(regionid) ) {
-      throw "not a valid object id" + regionid;
+    throw "not a valid object id" + regionid;
   }
   return this.find({ name : name, costalZone: regionid});
 };
@@ -52,10 +52,10 @@ PoisSchema.statics.findByName = function(name) {
 
 PoisSchema.statics.findByRegionId = function(regionid) {
   if (! Mongoose.Types.ObjectId.isValid(regionid) ) {
-      throw "not a valid object id" + regionid;
+    throw "not a valid object id" + regionid;
   }
   return this.find({ costalZone: regionid});
-  
+
 };
 
 module.exports = Mongoose.model('Pois', PoisSchema);

@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bell": "^10.0.0",
     "boom": "^7.3.0",
     "dotenv": "^6.2.0",
     "hapi": "^18.1.0",
@@ -17,15 +18,20 @@
     "inert": "^5.1.2",
     "jinja-to-js": "^3.2.3",
     "joi": "^14.3.1",
+    "lodash": "^4.17.11",
     "mais-mongoose-seeder": "^1.0.7",
-    "mongoose": "^5.4.19",
+    "mongoose": "^5.5.7",
     "mongoose-long": "^0.2.1",
+    "nanoid": "^2.0.2",
     "nunjucks": "^3.2.0",
     "nunjucks-hapi": "^2.1.0",
     "path": "^0.12.7",
     "vision": "^5.4.4"
   },
   "devDependencies": {
+    "axios": "^0.18.0",
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
     "prettier": "^1.16.0"
   },
   "prettier": {

@@ -1,0 +1,131 @@
+{
+  "regions": [
+    {
+        "title": "Leitrim",
+        "variable": "leitrim",
+        "identifier": "**Leitrim**",
+        "geo": {
+          "lat": null,
+          "long": null
+        }
+    },
+    {
+        "title": "Mayo",
+        "variable": "mayo",
+        "identifier": "**Mayo**",
+        "geo": {
+          "lat": null,
+          "long": null
+        }
+    }
+  ],
+  "dummyRegion":
+  {
+    "title": "Leitrim",
+    "variable": "Leitrim",
+    "identifier": "**Leitrim**",
+    "geo": {
+      "lat": null,
+      "long": null
+    }
+  },
+  "newRegion":
+  {
+    "title": "Kerry",
+    "variable": "kerry",
+    "identifier": "**Kerry**",
+    "geo": {
+      "lat": null,
+      "long": null
+    }
+  },
+  "pois": [
+    {
+      "name": "**Lough Scur**",
+      "nameHtml": "&lt;p&gt;&lt;strong&gt;Lough Scur&lt;/strong&gt;&lt;/p&gt;\n",
+      "safeName": "Lough-Scur",
+      "coordinates": {
+        "irishGrid": {
+          "sheet": "C",
+          "eastings": null,
+          "northings": null
+        },
+        "fullIrishGrid": {
+          "sheet": "",
+          "eastings": null,
+          "northings": null
+        },
+        "tmcGrid": {
+          "sheet": "",
+          "eastings": null,
+          "northings": null
+        },
+        "geo": {
+          "lat": null,
+          "long": null
+        }
+      },
+      "cursor": "147",
+      "description": "Historic Lake",
+      "costalZone": "**Leitrim**"
+    },
+    {
+      "name": "**Lough Marrave**",
+      "nameHtml": "&lt;p&gt;&lt;strong&gt;Lough Marrave&lt;/strong&gt;&lt;/p&gt;\n",
+      "safeName": "Lough-Marrave",
+      "coordinates": {
+        "irishGrid": {
+          "sheet": "C",
+          "eastings": null,
+          "northings": null
+        },
+        "fullIrishGrid": {
+          "sheet": "",
+          "eastings": null,
+          "northings": null
+        },
+        "tmcGrid": {
+          "sheet": "",
+          "eastings": null,
+          "northings": null
+        },
+        "geo": {
+          "lat": null,
+          "long": null
+        }
+      },
+      "cursor": "148",
+      "description":"Historic Lake",
+      "costalZone": "**Leitrim**"
+    }
+  ],
+  "newPoi": {
+      "name": "**Lough Rinn**",
+      "nameHtml": "&lt;p&gt;&lt;strong&gt;Lough Rinn&lt;/strong&gt;&lt;/p&gt;\n",
+      "safeName": "Lough-Rinn",
+      "coordinates": {
+        "irishGrid": {
+          "sheet": "C",
+          "eastings": null,
+          "northings": null
+        },
+        "fullIrishGrid": {
+          "sheet": "C",
+          "eastings": null,
+          "northings": null
+        },
+        "tmcGrid": {
+          "sheet": "C",
+          "eastings": null,
+          "northings": null
+        },
+        "geo": {
+          "lat": null,
+          "long": null
+        }
+      },
+      "cursor": 148,
+      "description": "Historic Lake",
+      "costalZone": "**Leitrim**"
+  }
+}
