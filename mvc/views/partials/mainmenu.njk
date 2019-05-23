@@ -1,21 +1,26 @@
-        <div class="ui container">
-            <nav class="ui large secondary inverted pointing menu">
+        <div class="ui stackable doubling container">
+          <div class="ui secondary inverted stackable doubling pointing menu">
                 <a class="toc item">
                   <i class="sidebar icon"></i>
                 </a>
-            {%- if user or pois or regions %}
-                <header class="header item"><a href="/home"> Points of Interest</a></header>
-            {%- else %}
-                <header class="header item"><a href="/"> Points of Interest</a></header>
-            {%- endif %}
-                <div class="right menu">
-                    <a id="home"   class= "item" href="/home"> Regions</a>
-                    <a id="settings" class= "item" href="/settings"> Settings</a>
-                    <a id="logout" class= "item" href="/logout"> Logout</a>
+                <div class="left floated item">
+                    <div class="ui blue buttons">
+                        <a id="home" class="ui inverted button" href="/home">Points of Interest</a>
+                        <a id="privacy" class="ui inverted button" href="/privacy"> Privacy </a>
+                        <a id="settings" class="ui inverted button" href="/settings"> Settings  </a>
+                    </div>
                 </div>
-            </nav>
-        </div>
-        
+                <div class="right floated item">
+                    <div class="ui green buttons">
+                    {%- if pois or regions %}
+                        <a id="regions" class="ui inverted button" href="/home"> Regions </a>
+                    {%- endif %}
+                        <a id="logout" class="ui inverted button" href="/logout"> Logout </a>
+                    </div>
+                </div>
+            </div>
+          </div>
+
         <script>
             $("#{{_id}}").addClass("active item");
         </script>

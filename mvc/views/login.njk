@@ -1,0 +1,27 @@
+{% include "layout.html" %}
+
+<div class="pusher">
+    <div class="ui inverted vertical masthead center aligned segment">
+
+        {%- include "partials/welcomemenu.html" %}
+
+        <div class="ui two column middle aligned grid basic segment">
+            <div class="column">
+                <img class="ui image" src="/images/Beacha_sculpture_by_David_Walsh.jpg">
+            </div>
+            <div class="column">
+                <form class="ui stacked segment form" action="/insecure/login" method="POST">
+                    <h3 class="ui header">Log-in</h3>
+                    <div class="field">
+                        <label>Email</label> <input placeholder="Email" name="email">
+                    </div>
+                    <div class="field">
+                        <label>Password</label> <input Placeholder="password" type="password" name="password">
+                    </div>
+                    <button class="ui blue submit button">Login</button>
+                </form>
+                {%- include "partials/error.njk" %}
+            </div>
+        </div>
+    </div>
+</div>

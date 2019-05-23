@@ -1,13 +1,22 @@
         
-        <div class="ui container">
-          <div class="ui large secondary inverted pointing menu">
-            <a class="toc item">
-              <i class="sidebar icon"></i>
-            </a>
-            <a id="home" class="item" href="/">Points of Interest</a>
-            <div class="right item">
-              <a id="privacy" class="ui inverted button" href="/privacy"> Privacy </a>
-              <a id="login" class="ui inverted button" href="/login">  Login   </a>
+        <div class="ui stackable doubling container">
+          <div class="ui secondary inverted stackable doubling pointing menu">
+                <div class="left floated item">
+                    <div class="ui blue buttons">
+                        <a id="home" class="ui inverted button" href="/">Points of Interest</a>
+                        <a id="privacy" class="ui inverted button" href="/privacy"> Privacy </a>
+                    </div>
+                </div>
+                <aside class="center floated item">
+                    <div class="ui red buttons">
+                        <a id="signup" class="ui red inverted button" href="/insecure/signup"> Legacy Signup  </a>
+                        <a id="login" class="ui red inverted button" href="/insecure/login">  Legacy Login   </a>
+                    </div>
+                </aside>
+                <div class="right floated item">
+                    <div class="ui green buttons">
+                        <a id="signup" class="ui inverted button" href="/secure/oauth"> OAuth  </a>
+                    </div>
+                </div>
             </div>
           </div>
-        </div>

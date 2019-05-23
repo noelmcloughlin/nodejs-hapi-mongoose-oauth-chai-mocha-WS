@@ -5,6 +5,16 @@
 
       {% include "partials/mainmenu.njk" %}
 
+      <section class="ui stacked segment">
+          <div class="ui grid">
+              <article class="ten wide column">
+                  {%- if pois %}
+                      {%- include "partials/addpoi.njk" %}
+                  {%- endif %}
+              </article>
+              {%- include "partials/error.njk" %}
+          </div>
+      </section>
       <section class="ui stacked segment grid">
           <div class="ui grid">
               <aside class="three wide column">
@@ -17,17 +27,7 @@
               </article>
           </div>
       </section>
-      <section class="ui stacked segment">
-          <div class="ui grid">
-              <article class="ten wide column">
-                  {%- if pois %}
-                      {%- include "partials/addpoi.njk" %}
-                  {%- endif %}
-              </article>
-              {%- include "partials/error.njk" %}
-          </div>
-      </section>
 
   </div>
 </div>
-~     
+

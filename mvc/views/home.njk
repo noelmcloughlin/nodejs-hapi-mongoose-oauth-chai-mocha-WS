@@ -7,6 +7,15 @@
 
       <section class="ui stacked segment">
           <div class="ui grid">
+              <article class="ten wide column">
+                  {%- if regions %}
+                      {%- include "partials/addregion.njk" %}
+                  {%- endif %}
+              </article>
+          </div>
+      </section>
+      <section class="ui stacked segment">
+          <div class="ui grid">
               <aside class="three wide column">
                   <img class="ui image" src="/images/Beacha_sculpture_by_David_Walsh.jpg">
               </aside>
@@ -21,15 +30,6 @@
                   {%- endif %}
 
               </section>
-          </div>
-      </section>
-      <section class="ui stacked segment">
-          <div class="ui grid">
-              <article class="ten wide column">
-                  {%- if regions %}
-                      {%- include "partials/addregion.njk" %}
-                  {%- endif %}
-              </article>
           </div>
       </section>
   </div>
