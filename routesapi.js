@@ -16,3 +16,5 @@ module.exports = [
   { method: 'DELETE', path: '/api/region/{region_id}', config: RegionApi.delete },
   { method: 'DELETE', path: '/api/region', config: RegionApi.deleteAll },
 ];
+
+

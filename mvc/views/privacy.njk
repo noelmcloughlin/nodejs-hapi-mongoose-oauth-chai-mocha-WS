@@ -3,8 +3,6 @@
 <div class="pusher">
     <div class="ui inverted vertical masthead center aligned segment">
 
-        {% include "partials/welcomemenu.html" %}
-
         <section class="ui center aligned one column grid container">
 
             <div class="ui column">
@@ -26,7 +24,11 @@
                     'OK' to continue using the product, otherwise, you will not be able to access the resource.
                     <br>
                     <br>
-                    <a href="/privacy/ok" class="ui massive primary button">Continue</a>
+     {%- if user %}
+                    <a href="/home" class="ui massive primary button">Continue</a>
+     {%- else %}
+                    <a href="/" class="ui massive primary button">Continue</a>
+     {%- endif %}
 
                 </article>
             </div>
