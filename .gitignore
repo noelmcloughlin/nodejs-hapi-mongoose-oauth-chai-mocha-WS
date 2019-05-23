@@ -3,3 +3,4 @@
 node_modules
 db
 public/db
+.DS_Store

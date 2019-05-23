@@ -6,13 +6,17 @@ const Pois    = require('./mvc/controllers/pois');
 
 module.exports = [
   { method: 'GET', path: '/', config: Accounts.index },
-  { method: 'GET', path: '/privacy/ok', config: Accounts.index },
   { method: 'GET', path: '/privacy', config: Accounts.privacy },
 
-  { method: 'GET', path: '/login', config: Accounts.login },
+  { method: 'GET', path: '/secure/oauth', config: Accounts.oauth },
   { method: 'GET', path: '/logout', config: Accounts.logout },
-  { method: 'GET', path: '/settings', config: Accounts.account },
-  { method: 'POST', path: '/settings', config: Accounts.userInfo },
+
+  { method: 'GET', path: '/insecure/login', config: Accounts.getLogin },
+  { method: 'POST', path: '/insecure/login', config: Accounts.login },
+  { method: 'GET', path: '/insecure/signup', config: Accounts.getSignup },
+  { method: 'POST', path: '/insecure/signup', config: Accounts.signup },
+  { method: 'GET', path: '/settings', config: Accounts.getSettings },
+  { method: 'POST', path: '/settings', config: Accounts.settings },
 
   //Points of Interest
   { method: 'GET',  path: '/report/{region_id}', config: Pois.report },
