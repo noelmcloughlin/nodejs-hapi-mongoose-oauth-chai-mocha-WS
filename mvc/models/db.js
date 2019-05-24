@@ -10,13 +10,13 @@ const seeder = require('mais-mongoose-seeder')(Mongoose);
 
 async function seed_users() {
   const data = require('./data/initdata.json');
-  const dbData = await seeder.seed(data, { dropDatabase: true, dropCollections: true });
+  const dbData = await seeder.seed(data, { dropDatabase: false, dropCollections: true });
   console.log(dbData);
 }
 
 async function seed_pois() {
   const data = require('./data/regions_pois.json');
-  const regionDb = await seeder.seed(data, { dropDatabase: true, dropCollections: true });
+  const regionDb = await seeder.seed(data, { dropDatabase: false, dropCollections: true });
   console.log(regionDb);
 }
 
