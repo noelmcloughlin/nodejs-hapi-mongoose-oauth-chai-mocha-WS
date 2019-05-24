@@ -2,7 +2,8 @@
 
 const Bell         = require('bell');
 const Boom         = require('boom');
-const Cookie       = require('hapi-auth-cookie');
+const Bcrypt       = require('bcrypt');
+const Cookies      = require('hapi-auth-cookie');
 const Dotenv       = require('dotenv');
 const Hapi         = require('hapi');
 const Inert        = require('inert');
@@ -14,7 +15,7 @@ const RoutesApi    = require('./routesApi');
 const Vision       = require('vision');
 
 // Sanity check modules
-const Checklist = [Bell, Boom, Cookie, Hapi, Vision, Inert, Nanoid, Nunjucks, NunjucksHapi, Routes, RoutesApi];
+const Checklist = [Bell, Boom, Bcrypt, Cookies, Dotenv, Hapi, Vision, Inert, Nanoid, Nunjucks, NunjucksHapi, Routes, RoutesApi];
 for (const o of Checklist) {
     if (o.error) {
         console.log(o.error.message);
@@ -37,7 +38,7 @@ Nunjucks.configure('views', {
 
 async function provision() {
   await server.register(Bell);
-  await server.register(Cookie);
+  await server.register(Cookies);
   await server.register(Inert);
   await server.register(Vision);
 
