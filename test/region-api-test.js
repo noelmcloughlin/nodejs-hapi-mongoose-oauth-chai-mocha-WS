@@ -45,9 +45,10 @@ suite("Region API tests", function () {
   test("Delete a non-existing Region", async function() {
     let id = 123455;
     let result = await regionService.get(id);
-    assert.equal(result, null);
+    assert.isNull(result);
     result = await regionService.delete(id);
-    assert(_.some([result], {success: true}));
+    assert.isNull(result);
+    //assert(_.some([result], {success: true}));
   });
 
   // DELETE ALL REGIONS

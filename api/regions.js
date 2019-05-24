@@ -6,8 +6,7 @@ const Regions = {
   findAll: {
     auth: false,
     handler: async function(request, h) {
-      const regions = await Region.findAll();
-      return regions
+      return await Region.findAll()
     }
   },
 
