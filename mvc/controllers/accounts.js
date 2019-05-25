@@ -87,11 +87,14 @@ const Accounts = {
           const message = 'Email address is already registered';
           throw new Boom(message);
         }
+        // Store hash in DB instead of password.
+        let hash = user.hashPassword(payload.password);
+        // Store user
         const newUser = new User({
           firstName: payload.firstName,
           lastName: payload.lastName,
           email: payload.email,
-          password: payload.password
+          password: hash
         });
         user = await newUser.save();
         request.cookieAuth.set({ id: user.id });
@@ -134,16 +137,19 @@ const Accounts = {
       const { email, password } = request.payload;
       try {
         let user = await User.findByEmail(email);
-        if (!user) {
+        if (user) {
+          // check password entered against stored value
+          if (user.compareHashedPassword(password)) {
+            request.cookieAuth.set({ id: user.id });
+            return h.redirect('/home');
+          }
+        } else {
           const message = 'Email address is not registered';
           throw new Boom(message);
         }
-        user.comparePassword(password);
-        request.cookieAuth.set({ id: user.id });
-        return h.redirect('/home');
       } catch (err) {
-        return h.view('login', { errors: [{ message: err.message }] });
-      }
+          return h.view('login', { errors: [{ message: err.message }] });
+        }
     }
   },
   getSettings: {
@@ -201,7 +207,10 @@ const Accounts = {
         user.firstName = userEdit.firstName;
         user.lastName = userEdit.lastName;
         user.email = userEdit.email;
-        user.password = userEdit.password;
+        // Store hash in DB instead of password.
+        let hash = user.hashPassword(userEdit.password);
+        user.password = hash;
+        // Save user
         await user.save();
         return h.redirect('/home');
       } catch (err) {

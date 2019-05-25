@@ -1,6 +1,7 @@
 'use strict';
 
 const Boom = require('boom');
+const Bcrypt = require('bcrypt');
 const Mongoose = require('mongoose');
 const Schema = Mongoose.Schema;
 
@@ -15,8 +16,25 @@ userSchema.statics.findByEmail = function(email) {
   return this.findOne({ email : email});
 };
 
-userSchema.methods.comparePassword = function(candidatePassword) {
+userSchema.methods.comparePlainTextPassword = function(candidatePassword) {
   const isMatch = this.password === candidatePassword;
+  if (!isMatch) {
+    throw new Boom('Password mismatch');
+  }
+  return this;
+};
+
+userSchema.methods.hashPassword = async function(candidatePassword) {
+  // Store hash in DB instead of password.
+  let hash = await Bcrypt.hash(candidatePassword, process.env.PASSWORD_HASH_SALT_ROUNDS || 10 );
+  if (!hash) {
+    throw new Boom('Password hashing - general failure');
+  }
+  return hash;
+};
+
+userSchema.methods.compareHashedPassword = async function(candidatePassword) {
+  const isMatch = await Bcrypt.compare(candidatePassword, this.password);
   if (!isMatch) {
     throw new Boom('Password mismatch');
   }

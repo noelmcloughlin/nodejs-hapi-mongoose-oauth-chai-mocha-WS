@@ -2,8 +2,10 @@
 
 const Bell         = require('bell');
 const Boom         = require('boom');
-const Cookie       = require('hapi-auth-cookie');
+const Bcrypt       = require('bcrypt');
+const Cookies      = require('hapi-auth-cookie');
 const Dotenv       = require('dotenv');
+const Fs           = require('fs');
 const Hapi         = require('hapi');
 const Inert        = require('inert');
 const Nanoid       = require('nanoid');
@@ -14,7 +16,7 @@ const RoutesApi    = require('./routesApi');
 const Vision       = require('vision');
 
 // Sanity check modules
-const Checklist = [Bell, Boom, Cookie, Hapi, Vision, Inert, Nanoid, Nunjucks, NunjucksHapi, Routes, RoutesApi];
+const Checklist = [Bell, Boom, Bcrypt, Cookies, Dotenv, Fs, Hapi, Vision, Inert, Nanoid, Nunjucks, NunjucksHapi, Routes, RoutesApi];
 for (const o of Checklist) {
     if (o.error) {
         console.log(o.error.message);
@@ -24,7 +26,11 @@ for (const o of Checklist) {
 
 // Setup environment
 Dotenv.config();
-const server = Hapi.server({ port: process.env.BASE_URL_PORT || 3000, });
+
+// Setup HTTPS
+const server = Hapi.server({ port: process.env.BASE_PORT || 8000 //,
+  //tls: { key: Fs.readFileSync(process.env.TLS_KEY), cert: Fs.readFileSync(process.env.TLS_CERT) }
+});
 require('./mvc/models/db');
 
 // Setup Rendering engine
@@ -37,7 +43,7 @@ Nunjucks.configure('views', {
 
 async function provision() {
   await server.register(Bell);
-  await server.register(Cookie);
+  await server.register(Cookies);
   await server.register(Inert);
   await server.register(Vision);
 
