@@ -4,7 +4,7 @@ const Boom = require('Boom');
 const Pois = {
 
   findAll: {
-    auth: false,
+    auth: { strategy: 'jwt' },
     handler: async function(request, h) {
       const pois = await Poi.findAll();
       return pois;
@@ -12,7 +12,7 @@ const Pois = {
   },
 
   find: {
-    auth: false,
+    auth: { strategy: 'jwt' },
     handler: async function(request, h) {
       try {
         const poi = await Poi.find({ _poi_id: request.params._id });
@@ -27,7 +27,7 @@ const Pois = {
   },
 
   create: {
-    auth: false,
+    auth: { strategy: 'jwt' },
     handler: async function(request, h) {
       const newPoi = new Poi(request.payload);
       const poi = await newPoi.save();
@@ -41,7 +41,7 @@ const Pois = {
   },
 
   delete: {
-    auth: false,
+    auth: { strategy: 'jwt' },
     handler: async function(request, h) {
       const poi = await Poi.deleteOne({ _poi_id: request.params.id });
       if (poi) {
@@ -54,7 +54,7 @@ const Pois = {
   },
 
   deleteAll: {
-    auth: false,
+    auth: { strategy: 'jwt' },
     handler: async function(request, h) {
       const poi = await Poi.deleteMany({});
       if (poi) {

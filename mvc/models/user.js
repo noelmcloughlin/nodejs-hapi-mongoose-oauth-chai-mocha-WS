@@ -12,6 +12,10 @@ const userSchema = new Schema({
   password: String
 });
 
+userSchema.statics.find = function(id) {
+  return this.findOne({ _id : id});
+};
+
 userSchema.statics.findByEmail = function(email) {
   return this.findOne({ email : email});
 };
@@ -26,7 +30,9 @@ userSchema.methods.comparePlainTextPassword = function(candidatePassword) {
 
 userSchema.methods.hashPassword = async function(candidatePassword) {
   // Store hash in DB instead of password.
-  let hash = await Bcrypt.hash(candidatePassword, process.env.PASSWORD_HASH_SALT_ROUNDS || 10 );
+  console.log(process.env.PASSWORD_HASH_SALT_ROUNDS);
+  const salt = await Bcrypt.genSalt( 10 );
+  let hash = await Bcrypt.hash(candidatePassword, salt );
   if (!hash) {
     throw new Boom('Password hashing - general failure');
   }

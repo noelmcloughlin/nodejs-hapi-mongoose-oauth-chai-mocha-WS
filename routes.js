@@ -11,10 +11,10 @@ module.exports = [
   { method: 'GET', path: '/secure/oauth', config: Accounts.oauth },
   { method: 'GET', path: '/logout', config: Accounts.logout },
 
-  { method: 'GET', path: '/insecure/login', config: Accounts.getLogin },
-  { method: 'POST', path: '/insecure/login', config: Accounts.login },
-  { method: 'GET', path: '/insecure/signup', config: Accounts.getSignup },
-  { method: 'POST', path: '/insecure/signup', config: Accounts.signup },
+  { method: 'GET', path: '/jwt/login', config: Accounts.getLogin },
+  { method: 'POST', path: '/jwt/login', config: Accounts.login },
+  { method: 'GET', path: '/jwt/signup', config: Accounts.getSignup },
+  { method: 'POST', path: '/jwt/signup', config: Accounts.signup },
   { method: 'GET', path: '/settings', config: Accounts.getSettings },
   { method: 'POST', path: '/settings', config: Accounts.settings },
 
