@@ -12,10 +12,6 @@ const userSchema = new Schema({
   password: String
 });
 
-userSchema.statics.find = function(id) {
-  return this.findOne({ _id : id});
-};
-
 userSchema.statics.findByEmail = function(email) {
   return this.findOne({ email : email});
 };

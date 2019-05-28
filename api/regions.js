@@ -1,20 +1,22 @@
+'use strict';
+
 const Region = require('../mvc/models/region');
-const Boom = require('Boom');
+const Boom = require('boom');
 
 const Regions = {
 
-  findAll: {
+  find: {
     auth: { strategy: 'jwt' },
-    handler: async function(request, h) {
-      return await Region.findAll()
+    handler: async function() {
+      return await Region.find()
     }
   },
 
-  find: {
+  findOne: {
     auth: { strategy: 'jwt' },
-    handler: async function(request, h) {
+    handler: async function(request) {
       try {
-        const region = await Region.findOne({ _region_id: request.params.region_id });
+        const region = await Region.findOne({ _region_id: request.params.id });
         if (!region) {
           return Boom.notFound('No region with this id');
         }
@@ -41,8 +43,8 @@ const Regions = {
 
   delete: {
     auth: { strategy: 'jwt' },
-    handler: async function(request, h) {
-      const region = await Region.delete({ _region_id: request.params.id });
+    handler: async function(request) {
+      const region = await Region.deleteOne({ _region_id: request.params.id });
       if (region) {
         // delete success
         return { success: true };
@@ -54,8 +56,8 @@ const Regions = {
 
   deleteAll: {
     auth: { strategy: 'jwt' },
-    handler: async function(request, h) {
-      const region = await Region.delete({});
+    handler: async function() {
+      const region = await Region.deleteMany({});
       if (region) {
         // delete success
         return { success: true };

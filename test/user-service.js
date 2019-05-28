@@ -1,6 +1,6 @@
 'use strict';
 
-const axios = require('axios').default;
+const axios = require('axios');
 
 class UserService {
   constructor(baseUrl) {

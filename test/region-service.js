@@ -1,13 +1,13 @@
 'use strict';
 
-const axios = require('axios').default;
+const axios = require('axios');
 
 class RegionService {
   constructor(baseUrl) {
     this.baseUrl = baseUrl;
   }
 
-  async getAll() {
+  async getAllRegions() {
     try {
       const response = await axios.get(this.baseUrl + '/api/region');
       return response.data;
@@ -16,16 +16,16 @@ class RegionService {
     }
   }
 
-  async get(id) {
+  async getRegion(region_id) {
     try {
-      const response = await axios.get(this.baseUrl + '/api/region/' + id);
+      const response = await axios.get(this.baseUrl + '/api/region/' + region_id);
       return response.data;
     } catch (e) {
       return null
     }
   }
 
-  async create(newRegion) {
+  async createRegion(newRegion) {
     try {
       const response = await axios.post(this.baseUrl + '/api/region', newRegion);
       return response.data;
@@ -34,18 +34,18 @@ class RegionService {
     }
   }
 
-  async delete(id) {
+  async deleteAllRegions() {
     try {
-      const response = await axios.delete(this.baseUrl + '/api/region/' + id);
+      const response = await axios.delete(this.baseUrl + '/api/region');
       return response.data;
     } catch (e) {
       return null
     }
   }
 
-  async deleteAll() {
+  async deleteRegion(region_id) {
     try {
-      const response = await axios.delete(this.baseUrl + '/api/region');
+      const response = await axios.delete(this.baseUrl + '/api/region/' + region_id);
       return response.data;
     } catch (e) {
       return null
