@@ -12,7 +12,7 @@ suite('User API tests', function () {
   let users = fixtures.users;
   let newUser = fixtures.newUser;
 
-  const userService = new UserService(process.env.BASE_URL + ':' + process.env.BASE_URL_PORT );
+  const userService = new UserService(process.env.BASE_URL + ':' + process.env.BASE_PORT );
 
   setup(async function () {
     await userService.deleteAll();

@@ -16,8 +16,8 @@ suite("Region API tests", function () {
   let newUser = fixtures.newUser;
 
   Dotenv.config();
-  const regionService = new RegionService(process.env.BASE_URL + ':' + process.env.BASE_URL_PORT );
-  const userService = new UserService(process.env.BASE_URL + ':' + process.env.BASE_URL_PORT );
+  const regionService = new RegionService(process.env.BASE_URL + ':' + process.env.BASE_PORT );
+  const userService = new UserService(process.env.BASE_URL + ':' + process.env.BASE_PORT );
 
   // BEFORE EACH SUITE
   suiteSetup(async function() {

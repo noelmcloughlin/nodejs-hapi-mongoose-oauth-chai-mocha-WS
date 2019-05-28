@@ -18,9 +18,9 @@ suite("Points of Interest API tests", function () {
   let region_id;
 
   Dotenv.config();
-  const poisService = new PoiService(process.env.BASE_URL + ':' + process.env.BASE_URL_PORT );
-  const regionService = new RegionService(process.env.BASE_URL + ':' + process.env.BASE_URL_PORT );
-  const userService = new UserService(process.env.BASE_URL + ':' + process.env.BASE_URL_PORT );
+  const poisService = new PoiService(process.env.BASE_URL + ':' + process.env.BASE_PORT );
+  const regionService = new RegionService(process.env.BASE_URL + ':' + process.env.BASE_PORT );
+  const userService = new UserService(process.env.BASE_URL + ':' + process.env.BASE_PORT );
 
   // BEFORE EACH SUITE
   suiteSetup(async function() {
