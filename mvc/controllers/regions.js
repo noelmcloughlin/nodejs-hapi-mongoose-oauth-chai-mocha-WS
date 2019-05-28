@@ -17,7 +17,7 @@ const Regions = {
   delete: {
     handler: async function(request, h) {
       try {
-        const region_id = Mongoose.Types.ObjectId(request.params.region_id);
+        const region_id = Mongoose.Types.ObjectId(request.params.id);
         await Region.findByIdAndDelete(region_id);
         return h.redirect('/home');
       } catch (err) {

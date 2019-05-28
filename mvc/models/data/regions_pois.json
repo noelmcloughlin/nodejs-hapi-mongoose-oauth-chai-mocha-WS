@@ -1,6 +1,6 @@
 {
     "regions": {
-    "_model": "Regions",
+    "_model": "Region",
     "26e48a44dbc45ea79ff1f99f": {
         "title": "North East",
         "variable": "northEast",
@@ -48,7 +48,7 @@
     }
   },
   "pois": {
-    "_model": "Pois",
+    "_model": "Poi",
     "26848242dbc45da79ff1293e": {
        "name": "**Lough Foyle**",
        "nameHtml": "&lt;p&gt;&lt;strong&gt;Lough Foyle&lt;/strong&gt;&lt;/p&gt;\n",

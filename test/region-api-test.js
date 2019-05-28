@@ -73,7 +73,7 @@ suite("Region API tests", function () {
       await regionService.create(r);
     }
     let result = await regionService.deleteAll();
-    assert(result != null, "delete result should not be null");
+    assert.isNull(result);
     result = await regionService.getAll();
     assert.isEmpty(result);
   });
@@ -81,6 +81,7 @@ suite("Region API tests", function () {
   // DELETE ALL REGIONS - NONE EXIST
   test("Delete all Regions but none exist", async function () {
     let result = await regionService.deleteAll();
+    console.log(result);
     assert(_.some([result], { success: true }));
   });
 
