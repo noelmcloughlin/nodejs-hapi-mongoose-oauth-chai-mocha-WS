@@ -1,26 +1,25 @@
 {
   "regions": [
     {
-        "title": "Leitrim",
-        "variable": "leitrim",
-        "identifier": "**Leitrim**",
-        "geo": {
-          "lat": null,
-          "long": null
-        }
+      "title": "Leitrim",
+      "variable": "leitrim",
+      "identifier": "**Leitrim**",
+      "geo": {
+        "lat": null,
+        "long": null
+      }
     },
     {
-        "title": "Mayo",
-        "variable": "mayo",
-        "identifier": "**Mayo**",
-        "geo": {
-          "lat": null,
-          "long": null
-        }
+      "title": "Mayo",
+      "variable": "mayo",
+      "identifier": "**Mayo**",
+      "geo": {
+        "lat": null,
+        "long": null
+      }
     }
   ],
-  "dummyRegion":
-  {
+  "dummyRegion": {
     "title": "Leitrim",
     "variable": "Leitrim",
     "identifier": "**Leitrim**",
@@ -29,8 +28,7 @@
       "long": null
     }
   },
-  "newRegion":
-  {
+  "newRegion": {
     "title": "Kerry",
     "variable": "kerry",
     "identifier": "**Kerry**",
@@ -95,38 +93,38 @@
         }
       },
       "cursor": "148",
-      "description":"Historic Lake",
+      "description": "Historic Lake",
       "costalZone": "**Leitrim**"
     }
   ],
   "newPoi": {
-      "name": "**Lough Rinn**",
-      "nameHtml": "&lt;p&gt;&lt;strong&gt;Lough Rinn&lt;/strong&gt;&lt;/p&gt;\n",
-      "safeName": "Lough-Rinn",
-      "coordinates": {
-        "irishGrid": {
-          "sheet": "C",
-          "eastings": null,
-          "northings": null
-        },
-        "fullIrishGrid": {
-          "sheet": "C",
-          "eastings": null,
-          "northings": null
-        },
-        "tmcGrid": {
-          "sheet": "C",
-          "eastings": null,
-          "northings": null
-        },
-        "geo": {
-          "lat": null,
-          "long": null
-        }
+    "name": "**Lough Rinn**",
+    "nameHtml": "&lt;p&gt;&lt;strong&gt;Lough Rinn&lt;/strong&gt;&lt;/p&gt;\n",
+    "safeName": "Lough-Rinn",
+    "coordinates": {
+      "irishGrid": {
+        "sheet": "C",
+        "eastings": null,
+        "northings": null
       },
-      "cursor": 148,
-      "description": "Historic Lake",
-      "costalZone": "**Leitrim**"
+      "fullIrishGrid": {
+        "sheet": "C",
+        "eastings": null,
+        "northings": null
+      },
+      "tmcGrid": {
+        "sheet": "C",
+        "eastings": null,
+        "northings": null
+      },
+      "geo": {
+        "lat": null,
+        "long": null
+      }
+    },
+    "cursor": 148,
+    "description": "Historic Lake",
+    "costalZone": "**Leitrim**"
   },
   "users": [
     {
@@ -153,4 +151,5 @@
     "lastName": "Simpson",
     "email": "maggie@simpson.com",
     "password": "secret"
-  },
+  }
+}
