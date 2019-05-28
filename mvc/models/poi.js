@@ -58,4 +58,4 @@ PoisSchema.statics.findByRegionId = function(regionid) {
 
 };
 
-module.exports = Mongoose.model('Pois', PoisSchema);
+module.exports = Mongoose.model('Poi', PoisSchema);
