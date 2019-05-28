@@ -1,8 +1,12 @@
 'use strict';
 
 const Boom = require('boom');
+const Dotenv = require('dotenv');
 const User = require('../models/user');
 const Joi = require('joi');
+
+// Setup environment
+Dotenv.config();
 
 const Accounts = {
   privacy: {
@@ -88,15 +92,16 @@ const Accounts = {
           throw new Boom(message);
         }
         // Store hash in DB instead of password.
-        let hash = user.hashPassword(payload.password);
-        // Store user
         const newUser = new User({
           firstName: payload.firstName,
           lastName: payload.lastName,
           email: payload.email,
-          password: hash
+          password: 'dummy'
         });
         user = await newUser.save();
+        user.password = await user.hashPassword(payload.password);
+        user = await user.save();
+
         request.cookieAuth.set({ id: user.id });
         return h.redirect('/');
       } catch (err) {
@@ -137,6 +142,7 @@ const Accounts = {
       const { email, password } = request.payload;
       try {
         let user = await User.findByEmail(email);
+
         if (user) {
           // check password entered against stored value
           if (user.compareHashedPassword(password)) {
@@ -156,7 +162,7 @@ const Accounts = {
     // Insecure type of implementation
     auth: 'cookie-auth',
     handler: async function(request, h) {
-      let user = null;
+      let user;
       try {
         const id = request.auth.credentials.id;
         user = await User.findById(id);
@@ -203,20 +209,23 @@ const Accounts = {
       try {
         const userEdit = request.payload;
         const id = request.auth.credentials.id;
-        const user = await User.findById(id);
+        let user = await User.findById(id);
+        if (!user) {
+          const message = 'Could not retrieve user';
+          throw new Boom(message);
+        }
         user.firstName = userEdit.firstName;
         user.lastName = userEdit.lastName;
         user.email = userEdit.email;
         // Store hash in DB instead of password.
-        let hash = user.hashPassword(userEdit.password);
-        user.password = hash;
+        user.password = await user.hashPassword(userEdit.password);
         // Save user
         await user.save();
         return h.redirect('/home');
-      } catch (err) {
-        return h.view('main', { errors: [{ message: err.message }] });
-      }
+    } catch (err) {
+      return h.view('login', { errors: [{ message: err.message }] });
     }
+  }
   },
   logout: {
     // Secure implementation

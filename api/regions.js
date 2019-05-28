@@ -4,14 +4,14 @@ const Boom = require('Boom');
 const Regions = {
 
   findAll: {
-    auth: false,
+    auth: { strategy: 'jwt' },
     handler: async function(request, h) {
       return await Region.findAll()
     }
   },
 
   find: {
-    auth: false,
+    auth: { strategy: 'jwt' },
     handler: async function(request, h) {
       try {
         const region = await Region.findOne({ _region_id: request.params.region_id });
@@ -26,7 +26,7 @@ const Regions = {
   },
 
   create: {
-    auth: false,
+    auth: { strategy: 'jwt' },
     handler: async function(request, h) {
       const newRegion = new Region(request.payload);
       const region = await newRegion.save();
@@ -40,7 +40,7 @@ const Regions = {
   },
 
   delete: {
-    auth: false,
+    auth: { strategy: 'jwt' },
     handler: async function(request, h) {
       const region = await Region.delete({ _region_id: request.params.id });
       if (region) {
@@ -53,7 +53,7 @@ const Regions = {
   },
 
   deleteAll: {
-    auth: false,
+    auth: { strategy: 'jwt' },
     handler: async function(request, h) {
       const region = await Region.delete({});
       if (region) {

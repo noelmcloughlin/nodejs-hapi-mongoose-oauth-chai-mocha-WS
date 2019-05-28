@@ -1,22 +1,38 @@
 'use strict';
 
 const _ = require("lodash");
-const suite = require('mocha').suite;
-const assert = require('chai').assert;
+const { assert: assert1 } = require('chai');
+const assert = assert1;
 const Dotenv = require('dotenv');
+const fixtures = require("./fixtures.json");
 const PoiService = require("./poi-service");
 const RegionService = require("./region-service");
-const fixtures = require("./fixtures.json");
+const suite = require('mocha').suite;
+const UserService = require("./user-service");
 
 suite("Points of Interest API tests", function () {
 
   let pois = fixtures.pois;
   let newPoi = fixtures.newPoi;
+  let newUser = fixtures.newUser;
   let region_id;
 
   Dotenv.config();
   const poisService = new PoiService(process.env.BASE_URL + ':' + process.env.BASE_URL_PORT );
   const regionService = new RegionService(process.env.BASE_URL + ':' + process.env.BASE_URL_PORT );
+  const userService = new UserService(process.env.BASE_URL + ':' + process.env.BASE_URL_PORT );
+
+  // BEFORE EACH SUITE
+  suiteSetup(async function() {
+    await userService.deleteAll();
+    await userService.authenticate(await userService.create(newUser));
+  });
+
+  // AFTER EACH SUITE
+  suiteTeardown(async function() {
+    await userService.deleteAll();
+    await userService.clearAuth();
+  });
 
   // BEFORE EACH TEST
   setup(async function() {
