@@ -1,21 +1,23 @@
+'use strict';
+
 const Poi = require('../mvc/models/poi');
-const Boom = require('Boom');
+const Boom = require('boom');
+const Utils = require('./utils.js');
 
 const Pois = {
 
-  findAll: {
+  find: {
     auth: { strategy: 'jwt' },
-    handler: async function(request, h) {
-      const pois = await Poi.findAll();
-      return pois;
+    handler: async function() {
+      return await Poi.find();
     }
   },
 
-  find: {
+  findOne: {
     auth: { strategy: 'jwt' },
-    handler: async function(request, h) {
+    handler: async function(request) {
       try {
-        const poi = await Poi.find({ _poi_id: request.params._id });
+        const poi = await Poi.findOne({ _poi_id: request.params._id });
         if (!poi) {
           return Boom.notFound('No point-of-interest with this id');
         }
@@ -29,6 +31,7 @@ const Pois = {
   create: {
     auth: { strategy: 'jwt' },
     handler: async function(request, h) {
+      const userId = Utils.getUserIdFromRequest(request);
       const newPoi = new Poi(request.payload);
       const poi = await newPoi.save();
       if (poi) {
@@ -42,7 +45,7 @@ const Pois = {
 
   delete: {
     auth: { strategy: 'jwt' },
-    handler: async function(request, h) {
+    handler: async function(request) {
       const poi = await Poi.deleteOne({ _poi_id: request.params.id });
       if (poi) {
         // delete success
@@ -55,7 +58,7 @@ const Pois = {
 
   deleteAll: {
     auth: { strategy: 'jwt' },
-    handler: async function(request, h) {
+    handler: async function() {
       const poi = await Poi.deleteMany({});
       if (poi) {
         // delete success

@@ -1,13 +1,13 @@
 'use strict';
 
-const axios = require('axios').default ;
+const axios = require('axios');
 
 class PoiService {
   constructor(baseUrl) {
     this.baseUrl = baseUrl;
   }
 
-  async getAll(region_id) {
+  async getAllPois(region_id) {
     try {
       const response = await axios.get(this.baseUrl + '/api/region/' + region_id + '/poi');
       return response.data;
@@ -16,7 +16,7 @@ class PoiService {
     }
   }
 
-  async get(region_id, id) {
+  async getPoi(region_id, id) {
     try {
       const response = await axios.get(this.baseUrl + '/api/region/' + region_id + '/poi/' + id);
       return response.data;
@@ -25,7 +25,7 @@ class PoiService {
     }
   }
 
-  async create(region_id, newPoi) {
+  async createPoi(region_id, newPoi) {
     try {
       const response = await axios.post(this.baseUrl + '/api/region/' + region_id + '/poi', newPoi);
       return response.data;
@@ -34,7 +34,7 @@ class PoiService {
     }
   }
 
-  async deleteAll(region_id) {
+  async deleteAllPois(region_id) {
     try {
       const response = await axios.delete(this.baseUrl + '/api/region/' + region_id + '/poi');
       return response.data;
@@ -43,7 +43,7 @@ class PoiService {
     }
   }
 
-  async delete(region_id, id) {
+  async deletePoi(region_id, id) {
     try {
       const response = await axios.delete(this.baseUrl + '/api/region/' + region_id + '/poi/' + id);
       return response.data;
@@ -51,7 +51,6 @@ class PoiService {
       return null
     }
   }
-
 }
 
 module.exports = PoiService;

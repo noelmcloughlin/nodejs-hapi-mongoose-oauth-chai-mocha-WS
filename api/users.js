@@ -2,7 +2,7 @@
 
 const Boom = require('boom');
 const User = require('../mvc/models/user');
-const utils = require('./utils.js');
+const Utils = require('./utils.js');
 
 const Users = {
   authenticate: {
@@ -13,7 +13,7 @@ const Users = {
         if (!user) {
           return Boom.notFound('Authentication failed. User not found');
         }
-        const token = utils.createToken(user);
+        const token = Utils.createToken(user);
         return h.response({ success: true, token: token }).code(201);
       } catch (err) {
         return Boom.notFound('internal db failure');
@@ -23,14 +23,14 @@ const Users = {
 
   find: {
     auth: false,
-    handler: async function(request, h) {
+    handler: async function() {
       return await User.find();
     }
   },
 
   findOne: {
     auth: false,
-    handler: async function(request, h) {
+    handler: async function(request) {
       try {
         const user = await User.findOne({ _id: request.params.id });
         if (!user) {
@@ -57,15 +57,15 @@ const Users = {
 
   deleteAll: {
     auth: false,
-    handler: async function(request, h) {
+    handler: async function() {
       await User.deleteMany({});
       return { success: true };
     }
   },
 
-  deleteOne: {
+  delete: {
     auth: false,
-    handler: async function(request, h) {
+    handler: async function(request) {
       const user = await User.deleteOne({ _id: request.params.id });
       if (user) {
         return { success: true };

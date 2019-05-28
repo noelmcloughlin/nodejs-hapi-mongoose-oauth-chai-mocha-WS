@@ -4,9 +4,10 @@
 const Mongoose = require('mongoose');
 require('mongoose-long')(Mongoose);
 const Schema = Mongoose.Schema;
+const Long = Schema.Types.Long;
 
 /* https://mongoosejs.com/docs/schematypes.html */
-const PoisSchema = new Schema({
+const PoiSchema = Schema({
     name: String,
     nameHtml: String,
     safeName: String,
@@ -27,8 +28,8 @@ const PoisSchema = new Schema({
         northings: String,
       },
       geo: {
-        lat: Schema.Types.Long,
-        long: Schema.Types.Long
+        lat: Long,
+        long: Long
       }
     },
     cursor: Number,
@@ -39,23 +40,4 @@ const PoisSchema = new Schema({
     },
   });
 
-PoisSchema.statics.findByNameAndRegionId = function(name, regionid) {
-  if (! Mongoose.Types.ObjectId.isValid(regionid) ) {
-    throw "not a valid object id" + regionid;
-  }
-  return this.find({ name : name, costalZone: regionid});
-};
-
-PoisSchema.statics.findByName = function(name) {
-  return this.findMany({ name : name});
-};
-
-PoisSchema.statics.findByRegionId = function(regionid) {
-  if (! Mongoose.Types.ObjectId.isValid(regionid) ) {
-    throw "not a valid object id" + regionid;
-  }
-  return this.find({ costalZone: regionid});
-
-};
-
-module.exports = Mongoose.model('Poi', PoisSchema);
+module.exports = Mongoose.model('Poi', PoiSchema);
