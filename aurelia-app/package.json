@@ -20,10 +20,12 @@
     "@types/jasmine": "^3.3.12",
     "@types/mocha": "^5.2.6",
     "@types/polymer": "^1.2.7",
+    "all": "^0.0.0",
     "aurelia-animator-css": "^1.0.4",
     "aurelia-bootstrapper": "^2.3.2",
     "aurelia-dependency-injection": ">=1.2.0",
     "aurelia-html-import-template-loader": "^1.0.0",
+    "aurelia-http-client": "latest",
     "aurelia-path": ">=1.1.1",
     "aurelia-polymer": "^1.0.0",
     "aurelia-templating": ">=1.1.4",
@@ -34,8 +36,7 @@
     "mocha": "^6.1.4",
     "polymer": "^0.5.0",
     "polymer-analyzer": "^3.0.1",
-    "web-component-tester": "^6.9.2",
-    "aurelia-http-client": "latest"
+    "web-component-tester": "^6.9.2"
   },
   "devDependencies": {
     "@types/jest": "^24.0.9",
