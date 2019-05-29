@@ -1,4 +1,4 @@
-# nodejs-hapi-nunjucks-mongodb-app
+# nodejs-hapi-aurelia-mongodb-app
 
 POINTS OF INTEREST
 
