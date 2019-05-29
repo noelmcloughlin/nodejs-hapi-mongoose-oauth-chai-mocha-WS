@@ -1,0 +1,20 @@
+<template>
+  <form submit.trigger="makePoi()" class="ui form stacked segment">
+    <h3 class='ui dividing header'> Add a Poi </h3>
+    <div class="grouped inline fields">
+      <div class="field">
+        <label>nameHtml</label> <input type="string" value.bind="nameHtml">
+      </div>
+    </div>
+    <h4 class="ui dividing header"> Select Region </h4>
+    <div class="grouped inline fields">
+      <div class="field" repeat.for="region of regions">
+        <div class="ui radio checkbox">
+          <input type="radio" model.bind="region" checked.bind="selectedRegion">
+          <label>${region.title}, ${region.variable}</label>
+        </div>
+      </div>
+    </div>
+    <button class="ui blue submit button">Add Poi</button>
+  </form>
+</template>

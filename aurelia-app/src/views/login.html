@@ -1,0 +1,17 @@
+<template>
+  <div class="ui stackable two column grid">
+    <div class="column">
+      <form submit.delegate="login($event)" class="ui stacked segment form">
+        <h3 class="ui header">Log-in</h3>
+        <div class="field">
+          <label>Email</label> <input placeholder="Email" value.bind="email"/>
+        </div>
+        <div class="field">
+          <label>Password</label> <input type="password" value.bind="password"/>
+        </div>
+        <button class="ui blue submit button">Login</button>
+        <h3>${prompt}</h3>
+      </form>
+    </div>
+  </div>
+</template>

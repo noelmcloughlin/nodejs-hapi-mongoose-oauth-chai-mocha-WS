@@ -1,0 +1,13 @@
+<template>
+  <require from="../resources/elements/pois-list"></require>
+  <require from="../resources/elements/poi-form"></require>
+
+  <div class="ui stackable grid">
+    <div class="seven wide column">
+      <poi-form regions.bind="regions"></poi-form>
+    </div>
+    <div class="seven wide column">
+      <pois-list pois.bind="pois"></pois-list>
+    </div>
+  </div>
+</template>

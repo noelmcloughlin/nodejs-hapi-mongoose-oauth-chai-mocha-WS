@@ -1,0 +1,17 @@
+<template>
+  <require from="../resources/elements/region-form"></require>
+  <require from="../resources/elements/region-list"></require>
+  <require from="../resources/elements/total-poi"></require>
+
+  <div class="ui stackable two column grid">
+    <div class="column">
+      <region-form regions.bind="regions"></region-form>
+    </div>
+    <div class="two wide column">
+      <total-poi></total-poi>
+    </div>
+    <div class="column">
+      <region-list regions.bind="regions"></region-list>
+    </div>
+  </div>
+</template>

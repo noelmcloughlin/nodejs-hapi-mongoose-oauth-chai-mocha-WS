@@ -1,0 +1,32 @@
+<template>
+  <h4 class="ui dividing header"> Regions </h4>
+  <table class="ui celled table segment">
+    <thead>
+      <tr>
+        <th>title</th>
+        <th>variable</th>
+        <th>identifier</th>
+        <th>latitude</th>
+        <th>longitude</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr repeat.for="region of regions">
+        <td>
+          ${region.title}
+        <td>
+          ${region.variable}
+        </td>
+        <td>
+          ${region.identifier}
+        </td>
+        <td>
+          ${region.latitude}
+        </td>
+        <td>
+          ${region.longitude}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</template>
