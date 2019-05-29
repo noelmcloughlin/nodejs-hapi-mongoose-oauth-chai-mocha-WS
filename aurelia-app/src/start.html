@@ -1,0 +1,13 @@
+
+<template>
+  <require from="resources/elements/nav-bar.html"></require>
+  <div class="ui container">
+    <section class="ui raised segment">
+      <h3 class="ui header"> Points of Interest </h3>
+    </section>
+    <nav-bar router.bind="router"></nav-bar>
+    <div class="ui basic segment">
+      <router-view></router-view>
+    </div>
+  </div>
+</template>

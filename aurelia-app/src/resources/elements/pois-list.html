@@ -1,0 +1,21 @@
+<template>
+  <div class="ui stacked segment">
+    <h3 class="ui dividing header"> Points of Interest </h3>
+    <table class="ui celled table segment">
+      <thead>
+        <tr>
+          <th>nameHtml</th>
+          <th>safeName</th>
+          <th>Region</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr repeat.for="poi of pois">
+          <td> ${poi.nameHtml}</td>
+          <td> ${poi.method}</td>
+          <td> ${poi.costalZone}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</template>

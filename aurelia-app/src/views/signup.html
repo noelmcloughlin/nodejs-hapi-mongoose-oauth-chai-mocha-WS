@@ -1,0 +1,26 @@
+<template>
+
+  <div class="ui stackable two column grid">
+    <div class="column">
+      <form submit.delegate="signup($event)" class="ui stacked segment form">
+        <h3 class="ui header">Register</h3>
+        <div class="two fields">
+          <div class="field">
+            <label>First Name</label> <input placeholder="First Name" type="text" value.bind="firstName">
+          </div>
+          <div class="field">
+            <label>Last Name</label> <input placeholder="Last Name" type="text" value.bind="lastName">
+          </div>
+        </div>
+        <div class="field">
+          <label>Email</label> <input placeholder="Email" type="text" value.bind="email">
+        </div>
+        <div class="field">
+          <label>Password</label> <input type="password" value.bind="password">
+        </div>
+        <button class="ui blue submit button">Submit</button>
+      </form>
+      <h3>${prompt}</h3>
+    </div>
+  </div>
+</template>
