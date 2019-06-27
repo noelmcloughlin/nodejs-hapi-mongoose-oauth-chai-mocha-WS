@@ -31,6 +31,10 @@ for (const o of Checklist) {
 // Setup environment
 Dotenv.config();
 
+//Use rookout
+const rook = require('rookout');
+rook.start({ token: '5a805c26b8ef89c391eb8b2f29117d93600321911dbf9cecee3fcf1ca67781d8' })
+
 // Setup HTTPS
 const server = Hapi.server({ port: process.env.BASE_PORT || 8000,
   routes: { cors: true } //,
