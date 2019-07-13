@@ -24,7 +24,7 @@
     "jinja-to-js": "^3.2.3",
     "joi": "latest",
     "jsonwebtoken": "^8.5.1",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.13",
     "mais-mongoose-seeder": "^1.0.7",
     "mongoose": "^5.5.7",
     "mongoose-long": "^0.2.1",
