@@ -1,6 +1,6 @@
 'use strict';
 
-const Boom = require('boom');
+const Boom = require('@hapi/boom');
 const User = require('../mvc/models/user');
 const Utils = require('./utils.js');
 
@@ -24,7 +24,7 @@ const Users = {
   find: {
     auth: false,
     handler: async function() {
-      return await User.find();
+      return User.find();
     }
   },
 

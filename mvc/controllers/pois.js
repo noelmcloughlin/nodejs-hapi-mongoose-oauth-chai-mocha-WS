@@ -3,7 +3,7 @@
 const Region = require('../models/region');
 const Poi  = require('../models/poi');
 const Mongoose = require('mongoose');
-const Boom = require('boom');
+const Boom = require('@hapi/boom');
 
 const Pois = {
   home: {
@@ -19,7 +19,7 @@ const Pois = {
   report: {
     handler: async function(request, h) {
       try {
-        const region_id = Mongoose.Types.ObjectId(request.params.region_id);
+        const region_id = Mongoose.Types.ObjectId.createFromHexString(request.params.region_id);
 
         const region = await Region.findById(region_id);
         if (!region) {
@@ -39,8 +39,8 @@ const Pois = {
   editDesc: {
     handler: async function(request, h) {
       try {
-        const region_id = Mongoose.Types.ObjectId(request.params.region_id);
-        const poi_id   = Mongoose.Types.ObjectId(request.params.poi_id);
+        const region_id = Mongoose.Types.ObjectId.createFromHexString(request.params.region_id);
+        const poi_id   = Mongoose.Types.ObjectId.createFromHexString(request.params.poi_id);
         const data = request.payload;
 
         const region = await Region.findById(region_id);
@@ -63,8 +63,8 @@ const Pois = {
   delete: {
     handler: async function(request, h) {
       try {
-        const region_id = Mongoose.Types.ObjectId(request.params.region_id);
-        const poi_id   = Mongoose.Types.ObjectId(request.params.poi_id);
+        const region_id = Mongoose.Types.ObjectId.createFromHexString(request.params.region_id);
+        const poi_id   = Mongoose.Types.ObjectId.createFromHexString(request.params.poi_id);
 
         const pois = await Poi.findOne({ _id: poi_id });
         if (!pois) {
@@ -81,7 +81,7 @@ const Pois = {
   add: {
     handler: async function(request, h) {
       try {
-        const region_id = Mongoose.Types.ObjectId(request.params.region_id);
+        const region_id = Mongoose.Types.ObjectId.createFromHexString(request.params.region_id);
         const data = request.payload;
 
         const newPois = new Poi({

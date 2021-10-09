@@ -1,7 +1,7 @@
 'use strict';
 
 const Poi = require('../mvc/models/poi');
-const Boom = require('boom');
+const Boom = require('@hapi/boom');
 const Utils = require('./utils.js');
 
 const Pois = {
@@ -9,7 +9,7 @@ const Pois = {
   find: {
     auth: { strategy: 'jwt' },
     handler: async function() {
-      return await Poi.find();
+      return Poi.find();
     }
   },
 

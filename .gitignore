@@ -1,5 +1,5 @@
 .idea
 db
-node_modules
+node_modules/*
 public/db
 .DS_Store

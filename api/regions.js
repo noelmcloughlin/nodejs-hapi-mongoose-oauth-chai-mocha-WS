@@ -1,14 +1,14 @@
 'use strict';
 
 const Region = require('../mvc/models/region');
-const Boom = require('boom');
+const Boom = require('@hapi/boom');
 
 const Regions = {
 
   find: {
     auth: { strategy: 'jwt' },
     handler: async function() {
-      return await Region.find()
+      return Region.find();
     }
   },
 

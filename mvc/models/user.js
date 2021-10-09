@@ -1,6 +1,6 @@
 'use strict';
 
-const Boom = require('boom');
+const Boom = require('@hapi/boom');
 const Bcrypt = require('bcrypt');
 const Mongoose = require('mongoose');
 const Schema = Mongoose.Schema;
@@ -19,7 +19,7 @@ userSchema.statics.findByEmail = function(email) {
 userSchema.methods.comparePlainTextPassword = function(candidatePassword) {
   const isMatch = this.password === candidatePassword;
   if (!isMatch) {
-    throw new Boom('Password mismatch');
+    throw new Boom.Boom('Password mismatch');
   }
   return this;
 };
@@ -30,7 +30,7 @@ userSchema.methods.hashPassword = async function(candidatePassword) {
   const salt = await Bcrypt.genSalt( 10 );
   let hash = await Bcrypt.hash(candidatePassword, salt );
   if (!hash) {
-    throw new Boom('Password hashing - general failure');
+    throw new Boom.Boom('Password hashing - general failure');
   }
   return hash;
 };
@@ -38,7 +38,7 @@ userSchema.methods.hashPassword = async function(candidatePassword) {
 userSchema.methods.compareHashedPassword = async function(candidatePassword) {
   const isMatch = await Bcrypt.compare(candidatePassword, this.password);
   if (!isMatch) {
-    throw new Boom('Password mismatch');
+    throw new Boom.Boom('Password mismatch');
   }
   return this;
 };

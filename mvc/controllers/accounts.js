@@ -1,6 +1,6 @@
 'use strict';
 
-const Boom = require('boom');
+const Boom = require('@hapi/boom');
 const Dotenv = require('dotenv');
 const User = require('../models/user');
 const Joi = require('joi');

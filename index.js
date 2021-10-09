@@ -1,21 +1,21 @@
 'use strict';
 
-const Bell         = require('bell');
-const Boom         = require('boom');
+const Bell         = require('@hapi/bell');
+const Boom         = require('@hapi/boom');
 const Bcrypt       = require('bcrypt');
-const Cookies      = require('hapi-auth-cookie');
+const Cookies      = require('@hapi/cookie');
 const Dotenv       = require('dotenv');
 const Fs           = require('fs');
-const Hapi         = require('hapi');
-const Inert        = require('inert');
+const Hapi         = require('@hapi/hapi');
+const Inert        = require('@hapi/inert');
 const Jwt          = require('hapi-auth-jwt2');
-const Nanoid       = require('nanoid');
+const { Nanoid }   = require('nanoid');
 const Nunjucks     = require('nunjucks');
 const NunjucksHapi = require('nunjucks-hapi');
 const Routes       = require('./routes');
 const RoutesApi    = require('./routesApi');
-const Utils = require('./api/utils.js');
-const Vision       = require('vision');
+const Utils        = require('./api/utils.js');
+const Vision       = require('@hapi/vision');
 
 // Sanity check modules
 const Checklist = [Bell, Boom, Bcrypt, Cookies, Dotenv, Fs, Hapi, Inert, Jwt, Nanoid, Nunjucks, NunjucksHapi,
